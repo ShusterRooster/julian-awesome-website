@@ -9,8 +9,8 @@ import {StarFall} from "#components";
 
 <template>
   <title>julian epic awesome website</title>
-  <StarFall class="overlay" background-color="#1a1a1a">
-    
+  <StarFallCtx class="overlay">
+
     <div id="imgColumnLeft">
       <img src="~/assets/home/butterflies.gif" alt="butterflies">
       <img src="~/assets/home/gnome-toilet.gif" alt="gnome toilet">
@@ -49,7 +49,7 @@ import {StarFall} from "#components";
       <img src="~/assets/home/cactus.gif" alt="cactus">
     </div>
 
-  </StarFall>
+  </StarFallCtx>
 </template>
 
 <style scoped>
