@@ -8,16 +8,20 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "start": "node .output/server/index.mjs"
+    "start": "bun .output/server/index.mjs"
   },
   "engines": {
     "node": "21.x"
   },
   "dependencies": {
     "@nuxtjs/google-fonts": "^3.2.0",
+    "bun": "^1.1.12",
     "nuxt": "^3.11.2",
     "paper": "^0.12.17",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.1.3"
   }
 }
