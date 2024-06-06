@@ -9,7 +9,7 @@ import {StarFall} from "#components";
 
 <template>
   <title>julian epic awesome website</title>
-  <StarFallCtx class="overlay">
+  <StarFall class="overlay">
 
     <div id="imgColumnLeft">
       <img src="~/assets/home/butterflies.gif" alt="butterflies">
@@ -49,7 +49,7 @@ import {StarFall} from "#components";
       <img src="~/assets/home/cactus.gif" alt="cactus">
     </div>
 
-  </StarFallCtx>
+  </StarFall>
 </template>
 
 <style scoped>
