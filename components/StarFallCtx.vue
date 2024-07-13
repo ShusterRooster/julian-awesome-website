@@ -86,8 +86,8 @@ class Star {
       this.ctx.lineTo(x ,y);
     }
     this.ctx.closePath();
-    this.ctx.shadowColor = "green"
-    this.ctx.shadowBlur = 20
+    // this.ctx.shadowColor = "green"
+    // this.ctx.shadowBlur = 20
     this.ctx.fill()
     this.ctx.resetTransform()
   }
@@ -170,7 +170,7 @@ onMounted(async () => {
 </style>
 
 <template>
-  <div id="container" ref="container">
+  <div id="background" ref="container">
     <canvas id="canvas" ref="canvas"></canvas>
     <slot></slot>
   </div>
