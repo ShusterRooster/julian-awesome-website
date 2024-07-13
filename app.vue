@@ -1,4 +1,6 @@
 <script setup lang="ts">
+  import JulianNav from "~/components/JulianNav.vue";
+
   const route = useRoute()
 
   if(route.name == 'index') {
@@ -8,8 +10,9 @@
 </script>
 
 <template>
+  <JulianNav top="3vh" right="3vw"></JulianNav>
+
   <div>
-    <Link rel="icon" type="image/x-icon" href="/dinosaur.png"></Link>
     <NuxtPage />
   </div>
 </template>
@@ -18,11 +21,23 @@
 body {
   margin: 0;
   overflow-x: hidden;
-}
-
-.index {
   background-color: #060606;
 }
 
+* {
+  font-size: 1em;
+  color: white;
+  font-family: 'Micro 5';
+}
+
+.background {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100%;
+  background-position: center;
+  position: fixed;
+  background-size: cover;
+  z-index: -1;
+}
 
 </style>

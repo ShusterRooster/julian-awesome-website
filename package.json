@@ -12,14 +12,15 @@
   },
   "engines": {
     "node": "21.x",
-    "pnpm": "9.2.0"
+    "pnpm": "9.5.0"
   },
   "dependencies": {
+    "@nuxt/image": "^1.7.0",
     "@nuxtjs/google-fonts": "^3.2.0",
     "nuxt": "^3.11.2",
     "paper": "^0.12.17",
+    "vite-plugin-require": "^1.2.14",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
-  },
-  "packageManager": "pnpm@9.2.0+sha512.98a80fd11c2e7096747762304106432b3ddc67dcf54b5a8c01c93f68a2cd5e05e6821849522a06fb76284d41a2660d5e334f2ee3bbf29183bf2e739b1dafa771"
+  }
 }

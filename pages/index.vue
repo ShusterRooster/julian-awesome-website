@@ -1,69 +1,56 @@
 <script setup lang="ts">
 import {StarFall} from "#components";
 
-// onclick = (event => {
-//   console.log(`${event.clientX}.${event.clientY}`
-// };
-
 </script>
 
 <template>
   <title>julian epic awesome website</title>
+  <Link rel="icon" type="image/x-icon" href="/dinosaur.png"></Link>
   <StarFall class="overlay">
 
     <div id="imgColumnLeft">
-      <img src="~/assets/home/butterflies.gif" alt="butterflies">
-      <img src="~/assets/home/gnome-toilet.gif" alt="gnome toilet">
-      <img src="~/assets/home/apple.gif" alt="apple">
-      <img src="~/assets/home/sharkie.gif" alt="shark!">
+      <img src="~/assets/home/butterflies.gif" alt="butterflies"/>
+      <img src="~/assets/home/gnome-toilet.gif" alt="gnome toilet"/>
+      <img src="~/assets/home/apple.gif" alt="apple"/>
+      <img src="~/assets/home/sharkie.gif" alt="shark!"/>
     </div>
 
     <div id="centerContent">
-      <img class="logo" src="~/assets/julianlogo.gif" alt="julian awesome website logo">
+      <img class="logo" src="~/assets/julianlogo.gif" alt="julian awesome website logo"/>
       <h2>omg hello welcome to julian awesome epic website!!!!</h2>
 
       <p>hello dear visitor! this is an early version of my website!
         I plan on adding a lot more so you can fully immerse yourself in the julian experience!</p>
 
       <div id="julianPics">
-        <img id="matrix" src="~/assets/julian-stuff/julianmatrix.png" alt="matrix julian">
-        <img id="pants" src="~/assets/julian-stuff/julianpants.png" alt="julian w pants">
-        <img id="fairy" src="~/assets/julian-stuff/julianfairy.png" alt="julian fairy">
-        <img id="epic" src="~/assets/julian-stuff/le epic face.png" alt="le epic face">
-        <img id="camera" src="~/assets/julian-stuff/juliancamera.png" alt="julian camera">
+        <img id="matrix" src="~/assets/julian-stuff/julianmatrix.png" alt="matrix julian"/>
+        <img id="pants" src="~/assets/julian-stuff/julianpants.png" alt="julian w pants"/>
+        <img id="fairy" src="~/assets/julian-stuff/julianfairy.png" alt="julian fairy"/>
+        <img id="epic" src="~/assets/julian-stuff/le epic face.png" alt="le epic face"/>
+        <img id="camera" src="~/assets/julian-stuff/juliancamera.png" alt="julian camera"/>
         <!--        <img id="face" dir=julianSrc file="julianface.png">-->
       </div>
 
-<!--      <div id="introText">-->
-<!--        <h2 style="display inline-block">hello i am-->
-
-<!--          <img dir=julianSrc file="julian shuster.gif" width="25%">-->
-<!--        </h2>-->
-
-<!--      </div>-->
     </div>
     <div id="imgColumnRight">
-      <img src="~/assets/home/flying-saucer.gif" alt="flying saucer">
-      <img src="~/assets/home/fish-graphic.gif" alt="fishies!">
-      <img src="~/assets/home/lightbulb.gif" alt="lightbulb guy">
-      <img src="~/assets/home/cactus.gif" alt="cactus">
+      <img src="~/assets/home/flying-saucer.gif" alt="flying saucer"/>
+      <img src="~/assets/home/fish-graphic.gif" alt="fishies!"/>
+      <img src="~/assets/home/lightbulb.gif" alt="lightbulb guy"/>
+      <img src="~/assets/home/cactus.gif" alt="cactus"/>
     </div>
 
   </StarFall>
+
 </template>
 
 <style scoped>
-* {
-  font-size: 125%;
-  font-family: 'Micro 5';
-}
 
 .logo {
   padding-top: 40px;
   padding-bottom: 20px;
   will-change: filter;
   transition: filter 300ms;
-  width: fit-content;
+  width: 50vw;
   align-self: center;
 }
 
@@ -79,7 +66,6 @@ import {StarFall} from "#components";
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-gap: 10px;
-  background: rgba(0, 0, 0, .75);
   min-width: 100vw;
   min-height: 100vh;
   width: 100vw;
@@ -92,7 +78,6 @@ import {StarFall} from "#components";
   grid-template-rows: repeat(3, 0.5fr);
   grid-auto-flow: row dense;
   height: fit-content;
-  max-width: 1200px;
   justify-items: center;
   padding: 20px;
 }
@@ -143,9 +128,14 @@ import {StarFall} from "#components";
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
-  width: fit-content;
-  min-width: 300px;
+
+  width: 15vw;
   height: 100%;
+}
+
+#imgColumnLeft, #imgColumnRight img {
+  object-fit: scale-down;
+  max-width: 100%;
 }
 
 #imgColumnLeft {
@@ -163,9 +153,8 @@ p {
   padding: 10px;
 }
 
-h1, h2 {
-  color: white;
-  margin: 0 auto;
+* {
+  font-size: 1.25em;
   text-align: center;
   padding: 10px;
 }
