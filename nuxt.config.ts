@@ -1,17 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
-import vitePluginRequire from "vite-plugin-require";
 
 export default defineNuxtConfig({
     modules: ['@nuxtjs/google-fonts', '@nuxt/image', '@vueuse/nuxt'],
     devtools: {enabled: true},
     pages: true,
     ssr: false,
-
-    vite: {
-        plugins: [
-            vitePluginRequire()
-        ]
-    },
 
     googleFonts: {
         families: {
