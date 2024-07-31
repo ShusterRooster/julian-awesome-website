@@ -36,7 +36,7 @@ function determineStars() {
 
     <div id="stars" ref="stars">
       <div v-for="star in determineStars()">
-        <img :src="require(star)" alt="star">
+        <img :src="star" alt="star">
       </div>
     </div>
 
