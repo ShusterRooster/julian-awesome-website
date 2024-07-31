@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  import JulianNav from "~/components/navigation/JulianNav.vue";
-  import JulianNavMobile from "~/components/navigation/JulianNavMobile.vue";
+import JulianNav from "~/components/navigation/JulianNav.vue";
+import JulianNavMobile from "~/components/navigation/JulianNavMobile.vue";
 
-  const route = useRoute()
+const route = useRoute()
 
   if(route.name == 'index') {
     document.body.style.backgroundColor = '#060606'
