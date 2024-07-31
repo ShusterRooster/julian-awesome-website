@@ -22,5 +22,10 @@
     "vite-plugin-require": "^1.2.14",
     "vue": "^3.4.27",
     "vue-router": "^4.3.2"
+  },
+  "devDependencies": {
+    "@vueuse/components": "^10.11.0",
+    "@vueuse/core": "^10.11.0",
+    "@vueuse/nuxt": "^10.11.0"
   }
 }

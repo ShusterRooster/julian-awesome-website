@@ -2,7 +2,7 @@
 import vitePluginRequire from "vite-plugin-require";
 
 export default defineNuxtConfig({
-    modules: ['@nuxtjs/google-fonts', "@nuxt/image"],
+    modules: ['@nuxtjs/google-fonts', '@nuxt/image', '@vueuse/nuxt'],
     devtools: {enabled: true},
     pages: true,
     ssr: false,
@@ -17,8 +17,11 @@ export default defineNuxtConfig({
         families: {
             'Jersey 10': true,
             'Micro 5': true,
-            'Rubik Iso': true,
-            'DotGothic16': true
+            'Pixelify Sans': true,
+            'Jacquard 12': true,
+            'Geostar Fill': true,
+            'Chokokutai': true,
+            'JetBrains Mono': true
         }
     }
 })
