@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import JulianNav from "~/components/navigation/JulianNav.vue";
 import JulianNavMobile from "~/components/navigation/JulianNavMobile.vue";
+import { SpeedInsights } from '@vercel/speed-insights/vue';
 
 const route = useRoute()
 
@@ -11,6 +12,7 @@ const route = useRoute()
 </script>
 
 <template>
+  <SpeedInsights/>
   <head>
     <meta property="og:title" content="julian AWESOME epic website!!"/>
 <!--    <meta property="og:image" content=""/>-->
