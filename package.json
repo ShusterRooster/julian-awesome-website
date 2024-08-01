@@ -11,8 +11,8 @@
     "start": "node .output/server/index.mjs"
   },
   "engines": {
-    "node": "21.x",
-    "pnpm": "9.5.0"
+    "node": "20.x",
+    "pnpm": "9.6.0"
   },
   "dependencies": {
     "@nuxt/image": "^1.7.0",

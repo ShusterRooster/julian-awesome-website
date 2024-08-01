@@ -7,8 +7,8 @@ defineProps<{
   right?: String,
 }>()
 
-let scale = 1 / 10
-let pixelOffset = 210
+let scale = 1 / 5
+let pixelOffset = 115
 
 const offset = pixelOffset * scale
 
