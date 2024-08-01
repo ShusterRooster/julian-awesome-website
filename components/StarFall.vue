@@ -85,7 +85,13 @@ onMounted(async () => {
   if (canvas.value !== undefined) {
     paper.setup(canvas.value)
     paper.view.viewSize = new paper.Size(window.innerWidth, window.innerHeight)
-    initStars(75)
+
+    if (window.matchMedia("(pointer: coarse)").matches)
+      initStars(35)
+    else
+      initStars(75)
+
+
     afterMount()
   }
 });

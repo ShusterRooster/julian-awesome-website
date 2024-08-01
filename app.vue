@@ -22,7 +22,7 @@ const route = useRoute()
   </head>
 
   <JulianNav top="3vh" right="3vw"></JulianNav>
-  <JulianNavMobile top="3vh" right="6vw"></JulianNavMobile>
+  <JulianNavMobile bottom="8vh" right="6vw"></JulianNavMobile>
 
   <div id="app">
     <NuxtPage />
@@ -40,6 +40,7 @@ body {
   font-size: 1em;
   color: white;
   font-family: 'Micro 5';
+  font-weight: normal;
 }
 
 .background {

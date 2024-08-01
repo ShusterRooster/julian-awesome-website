@@ -11,7 +11,7 @@ function between(n: number, min: number, max: number) {
 
 function rotateY() {
   if (!rotating && standing.value)
-    rotateToDeg(rotation + 180, standing.value)
+    rotateToDeg(rotation + 180, standing.value, true)
 }
 
 function rotateYMobile(standing: HTMLImageElement) {
@@ -19,7 +19,7 @@ function rotateYMobile(standing: HTMLImageElement) {
     rotateToDeg(rotation + 180, standing)
 }
 
-function rotateToDeg(deg: number, element: HTMLImageElement) {
+function rotateToDeg(deg: number, element: HTMLImageElement, transform = false) {
   if (!element) return;
 
   if (between(rotation, deg - rotateSpeed, deg + rotateSpeed)) {
@@ -29,10 +29,15 @@ function rotateToDeg(deg: number, element: HTMLImageElement) {
     rotating = true
     const direction = rotation < deg ? 1 : -1
     rotation += rotateSpeed * direction
-    element.style.transform = `rotateY(${rotation}deg)`
+
+    let str = `rotateY(${rotation}deg)`
+
+    if (transform) str += " translateY(-10%)"
+    console.log(str)
+    element.style.transform = str
 
     setTimeout(() => {
-      rotateToDeg(deg, element)
+      rotateToDeg(deg, element, transform)
     }, 5)
   }
 }
@@ -57,69 +62,74 @@ onMounted(async () => {
   <div id="container">
 
     <img id="dating-text" class="notMobile" src="~/assets/dating/datingtext.gif" alt="dating"/>
-    <img id="standing" class="notMobile" ref="standing" @mouseover="rotateY()"
-         src="~/assets/julian-stuff/julianstanding.png" alt="julian standing (he's so handsome)"/>
 
     <div id="mobileHeader">
       <img id="dating-text" class="mobile" src="~/assets/dating/datingtext.gif" alt="dating"/>
       <img id="border" class="mobile" src="~/assets/borders/heartbar.gif" alt="heart border"/>
     </div>
 
-    <div class="notMobile">
-      <img src="~/assets/dating/heart-jumping.gif" alt="heart jumping"
-           style="position: absolute; right: 60px; top: 60px"/>
 
-      <img src="~/assets/dating/floating_heart.gif" alt="floating heart"
-           style="position: absolute; right: 520px; top: 160px"/>
+    <div id="content">
+      <!--    ideas: user reviews, stats-->
+      <div id="textContent">
 
-      <img src="~/assets/dating/arrow2heart.gif" alt="arrow in two hearts"
-           style="position: absolute; right: 30px; top: 250px"/>
+        <h1 id="hello">hello ladies!!!</h1>
+        <h1>not just browsing the web? are you also browsing for a relationship?!</h1>
 
-      <img src="~/assets/dating/smilie.gif" alt="weird asf smilie face"
-           style="position: absolute; right: 640px; top: 400px"/>
-    </div>
+        <div id="mobileImages">
+          <img src="~/assets/dating/heart-jumping.gif" alt="heart jumping"
+               style="grid-area: 1 / 1 / 1 / 1"/>
 
-    <!--    ideas: user reviews, stats-->
-    <div id="textContent">
+          <img src="~/assets/dating/arrow2heart.gif" alt="arrow in two hearts"
+               style="grid-area: 2 / 1 / 2 / 1"/>
 
-      <h1 id="hello">hello ladies!!!</h1>
-      <h1>not just browsing the web? are you also browsing for a relationship?!</h1>
+          <img id="mobileStanding" ref="mobileStanding"
+               src="~/assets/julian-stuff/julianstanding.png" alt="julian standing (he's so handsome)"/>
 
-      <div id="mobileImages">
+          <img src="~/assets/dating/smilie.gif" alt="weird asf smilie face"
+               style="grid-area: 1 / 3 / 1 / 3"/>
+
+          <img src="~/assets/dating/floating_heart.gif" alt="floating heart"
+               style="grid-area: 2 / 3 / 2 / 3"/>
+        </div>
+
+        <h2>well look no further! i know it's hard to believe but
+          <span style="font-size: 40px"><strong>THE julian shuster,</strong></span>
+          the handsome fellow on your screen, is single and ready to mingle!!
+        </h2>
+
+        <br><br>
+
+
+        <div style="position: relative">
+          <img id="interested" style="border-radius: 35px" src="~/assets/dating/interestedtext.gif" alt="interested?"/>
+          <img class="arrow" style="transform: rotateY(180deg)" src="~/assets/dating/sign-arrows.gif"
+               alt="flashing arrow sign"/>
+        </div>
+
+        <h2>just read the reviews!!</h2>
+        <Review title="he is so dreamy and handsome" name="definitely NOT julian" stars="5"
+                message="omg he is so awesome and amazing you should definitely date him #yesss #somuchaura"></Review>
+
+      </div>
+
+      <div id="desktopImages" class="notMobile">
+        <img id="standing" class="notMobile" ref="standing" @mouseover="rotateY()"
+             src="~/assets/julian-stuff/julianstanding.png" alt="julian standing (he's so handsome)"
+             style=""/>
+
         <img src="~/assets/dating/heart-jumping.gif" alt="heart jumping"
-             style="grid-area: 1 / 1 / 1 / 1"/>
-
-        <img src="~/assets/dating/arrow2heart.gif" alt="arrow in two hearts"
-             style="grid-area: 2 / 1 / 2 / 1"/>
-
-        <img id="mobileStanding" ref="mobileStanding"
-             src="~/assets/julian-stuff/julianstanding.png" alt="julian standing (he's so handsome)"/>
-
-        <img src="~/assets/dating/smilie.gif" alt="weird asf smilie face"
-             style="grid-area: 1 / 3 / 1 / 3"/>
+             style="left: 5vw; top: 15vh"/>
 
         <img src="~/assets/dating/floating_heart.gif" alt="floating heart"
-             style="grid-area: 2 / 3 / 2 / 3"/>
+             style="right: 5vw; top: 15vh"/>
+
+        <img src="~/assets/dating/arrow2heart.gif" alt="arrow in two hearts"
+             style="top: 0; right: 0"/>
+
+        <img src="~/assets/dating/smilie.gif" alt="weird asf smilie face"
+             style="left: 5vw; top: 5vh"/>
       </div>
-
-      <h2>well look no further! i know it's hard to believe but
-        <span style="font-size: 40px"><strong>THE julian shuster,</strong></span>
-        the handsome fellow on your screen, is single and ready to mingle!!
-      </h2>
-
-      <br><br>
-
-
-      <div style="position: relative">
-        <img id="interested" style="border-radius: 35px" src="~/assets/dating/interestedtext.gif" alt="interested?"/>
-        <img class="arrow" style="transform: rotateY(180deg)" src="~/assets/dating/sign-arrows.gif"
-             alt="flashing arrow sign"/>
-      </div>
-
-      <h2>just read the reviews!!</h2>
-      <Review title="he is so dreamy and handsome" name="definitely NOT julian" stars="5"
-              message="omg he is so awesome and amazing you should definitely date him #yesss #somuchaura"></Review>
-
     </div>
   </div>
 
@@ -132,11 +142,27 @@ onMounted(async () => {
   border-radius: 35px;
 }
 
+#content {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0 20px 0 20px;
+}
+
 #standing {
+  transform: translateY(-10%);
+  width: 100%;
+}
+
+#desktopImages {
+  position: relative;
+  padding: 0 30px;
+  width: 100%;
+  height: 100%;
+}
+
+#desktopImages img {
   position: absolute;
-  right: 90px;
-  top: 90px;
-  width: 35%;
 }
 
 h1 {
@@ -148,14 +174,14 @@ h2 {
 }
 
 #hello {
-  margin-bottom: 0;
+  margin: 0;
   font-size: 75px;
 }
 
 /*margin: top, right, bottom, left */
 #textContent {
-  margin: 0 45vw auto 5vw;
   text-align: center;
+  max-width: 50vw;
 }
 
 .arrow {
@@ -173,11 +199,7 @@ h2 {
   padding: 35px;
 }
 
-.mobile {
-  display: none;
-}
-
-#mobileImages {
+.mobile, #mobileImages {
   display: none;
 }
 
@@ -186,12 +208,21 @@ h2 {
     padding: 0;
   }
 
+  #content {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
   #textContent {
     display: flex;
     flex-direction: column;
-    padding: 0 20px 0 20px;
     margin: 0;
     align-items: center;
+    padding: 20px 20px 0 20px;
+    max-width: 100%;
   }
 
   #mobileImages {

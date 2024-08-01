@@ -30,7 +30,7 @@ function determineStars() {
 </script>
 
 <template>
-  <div id="nav">
+  <div id="review">
     <h1>{{ props.title }}</h1>
     <h2 style="margin-top: 10px">from: {{ props.name }}</h2>
 
@@ -62,7 +62,7 @@ h2 {
   font-size: 25px;
 }
 
-#nav {
+#review {
   background: linear-gradient(47deg, rgba(0,0,0,1) 40%, rgba(255,46,129,1) 100%);
   border-radius: 35px;
   padding: 20px;

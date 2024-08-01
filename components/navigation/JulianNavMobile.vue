@@ -2,7 +2,8 @@
 import NavLinks from "~/components/navigation/NavLinks.vue";
 
 defineProps<{
-  top: String,
+  top?: String,
+  bottom?: String
   left?: String,
   right?: String,
 }>()
@@ -18,11 +19,7 @@ onMounted(async () => {
   // Wait for the next DOM update cycle
   await nextTick()
 
-  // posed = document.getElementById("posed") as HTMLImageElement
-  // standing = document.getElementById("standing") as HTMLImageElement
-  // popout = document.getElementById("popout") as HTMLDivElement
-
-  if(window.innerWidth < 640) {
+  if(window.matchMedia("(pointer: coarse)").matches) {
     hide()
   }
 
@@ -78,9 +75,9 @@ onClickOutside(posed, evt => {
 #popout {
   position: fixed;
   display: block;
-  padding: 20px;
 
-  top: 0;
+  padding: 20px;
+  bottom: 2vh;
 
   background-color: rgba(12, 12, 12, 0.95);
   border-radius: 35px;
@@ -97,6 +94,7 @@ onClickOutside(posed, evt => {
 .julian {
   position: fixed;
   top: v-bind(top);
+  bottom: v-bind(bottom);
   left: v-bind(left);
   right: v-bind(right);
 

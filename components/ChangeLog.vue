@@ -48,12 +48,7 @@ onMounted(async () => {
       }
     });
   }
-
-  if (window.matchMedia("(pointer: coarse)").matches) {
-    window.ontouchmove = (e: TouchEvent) => {
-      setTransform(e.touches[0])
-    }
-  } else {
+  if (!window.matchMedia("(pointer: coarse)").matches) {
     window.onmousemove = (e: MouseEvent) => {
       setTransform(e)
     };
@@ -62,8 +57,6 @@ onMounted(async () => {
       setTransform()
     }
   }
-
-
 })
 
 
@@ -82,9 +75,11 @@ onMounted(async () => {
       <ChangeLogEntry title="major update!" date="july 30, 2024">
         hello julian awesome website fans! I come to you with news of a massive update I have been working on!<br><br>
 
-        I have now made the existing pages friendly for mobile and have added a custom julian navigation menu for mobile devices!<br>
+        I have now made the existing pages friendly for mobile and have added a custom julian navigation menu for mobile
+        devices!<br>
 
-        unfortunately, the layout for tablets has not yet been optimized so please don't look at this website on there LOL<br><br>
+        unfortunately, the layout for tablets has not yet been optimized so please don't look at this website on there
+        LOL<br><br>
 
         in this update I have also added the
         <NuxtLink to="/terminal">terminal</NuxtLink>

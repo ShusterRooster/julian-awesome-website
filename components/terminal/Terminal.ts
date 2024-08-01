@@ -182,8 +182,7 @@ export default class Terminal {
         input.onkeydown = (e: KeyboardEvent) => {
             const value = input.value.trim()
 
-            if (e.code == "Enter" && value.length > 0) {
-
+            if (e.key == "Enter" && value.length > 0) {
                 const text = this.div.lastChild!.lastChild as HTMLInputElement
                 text.readOnly = true
                 this.history.push(value)

@@ -19,10 +19,9 @@ onMounted(async () => {
   // Wait for the next DOM update cycle
   await nextTick()
 
-  const nav = document.getElementById("nav") as HTMLDivElement
-  const top = document.getElementById("top") as HTMLImageElement
-  const bottom = document.getElementById("bottom") as HTMLImageElement
-
+  const nav = document.getElementById("julianNav") as HTMLDivElement
+  const top = document.getElementById("julianTop") as HTMLImageElement
+  const bottom = document.getElementById("julianBottom") as HTMLImageElement
 
   bothLoaded().then(() => {
     const width = top.width =
@@ -52,11 +51,11 @@ function bothLoaded(): Promise<void> {
 
 <template>
 
-  <div id="nav">
-    <img id="top" @load="topLoaded=true" style="visibility: hidden"
+  <div id="julianNav">
+    <img id="julianTop" @load="topLoaded=true" style="visibility: hidden"
          src="../../assets/julian-stuff/julianfacetop.png" alt="julian face top"/>
     <NavLinks id="links"></NavLinks>
-    <img id="bottom" @load="bottomLoaded=true" style="visibility: hidden"
+    <img id="julianBottom" @load="bottomLoaded=true" style="visibility: hidden"
          src="../../assets/julian-stuff/julianfacebottom.png" alt="julian face bottom"/>
   </div>
 
@@ -64,7 +63,7 @@ function bothLoaded(): Promise<void> {
 
 <style scoped>
 
-#nav {
+#julianNav {
   position: fixed;
   display: block;
   top: v-bind(top);
@@ -73,7 +72,7 @@ function bothLoaded(): Promise<void> {
   z-index: 5;
 }
 
-#nav:hover img {
+#julianNav:hover img {
   filter: drop-shadow(0 0 2em #ae8578);
 }
 
@@ -85,7 +84,7 @@ function bothLoaded(): Promise<void> {
   border-radius: 10px;
 }
 
-#nav:hover #links {
+#julianNav:hover #links {
   margin: 9%;
   max-height: 1000px;
   transform: scaleY(1);
@@ -102,7 +101,7 @@ img {
 
 /* touchscreens n stuff */
 @media (pointer:coarse) {
-  #nav {
+  #julianNav {
     display: none;
   }
 }
