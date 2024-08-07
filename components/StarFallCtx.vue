@@ -137,8 +137,6 @@ onMounted(async () => {
       starArr.push(star)
     }
 
-    console.log(starArr)
-
     animate()
   }
 
@@ -164,7 +162,6 @@ onMounted(async () => {
 #canvas {
   z-index: -1;
   position: absolute;
-  //background-color: #1a1a1a;
 }
 
 </style>

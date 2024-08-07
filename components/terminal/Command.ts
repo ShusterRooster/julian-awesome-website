@@ -21,7 +21,6 @@ omg julian nav themes per page
 
 import Terminal from "~/components/terminal/Terminal";
 
-
 function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
@@ -33,8 +32,6 @@ export interface CommandData {
 }
 
 export abstract class Command {
-    static terminal: Terminal
-
     name: string
     desc: string
     tab: number
@@ -53,12 +50,18 @@ export abstract class Command {
     checkForHelp(input: string) {
         const words = input.split(' ')
 
-        if(words.length > 1 && words[1] == "help") {
+        if (words.length > 1 && words[1] == "help") {
             this.help()
             return true
         }
 
         return false
+    }
+
+    improperUsage() {
+        this.sendText(`Improper usage of ${this.name} command. See below:`, "w")
+        this.help()
+        return
     }
 
     help() {
@@ -70,18 +73,18 @@ export abstract class Command {
 
     }
 
-    finish(final?: string, type = "default") {
-        if(final)
-            Command.terminal.sendText([final, type])
+    finish(final?: string, color?: string) {
+        if (final)
+            Terminal.terminal.sendText(final, color)
 
-        Command.terminal.makeLine()
+        Terminal.terminal.makeLine()
     }
 
     sendText(text: string, type?: string) {
-        if(type)
-            return Command.terminal.sendText([text, type])
+        if (type)
+            return Terminal.terminal.sendText(text, type)
 
-        return Command.terminal.sendText(text)
+        return Terminal.terminal.sendText(text)
     }
 }
 
@@ -91,8 +94,8 @@ export class FartCommand extends Command {
         super(data)
     }
 
-    async run(input: string) {
-        if(this.checkForHelp(input)) return
+    override async run(input: string) {
+        if (this.checkForHelp(input)) return
 
         const fart = new Audio('/fart.mp3')
         this.sendText("farting in progress...")
@@ -111,7 +114,7 @@ export class HelpCommand extends Command {
         super(data);
     }
 
-    async run() {
+    override async run() {
         let str = ""
 
         for (const c of Terminal.commands) {
@@ -128,8 +131,8 @@ export class DebugCommand extends Command {
         super(data);
     }
 
-    async run(input: string) {
-        if(this.checkForHelp(input)) return
+    override async run(input: string) {
+        if (this.checkForHelp(input)) return
 
         this.finish("This is the error message", "e")
     }
@@ -152,33 +155,30 @@ export class NavCommand extends Command {
         super(data);
     }
 
-    help() {
+    override help() {
         this.sendText("Usage: navto <option>")
         this.sendText("\tnavto list: lists all available pages to navigate to")
         this.sendText("\tnavto <page>: navigates to desired page")
         this.finish()
     }
 
-    async run(input: string) {
-        if(this.checkForHelp(input)) return
+    override async run(input: string) {
+        if (this.checkForHelp(input)) return
         const words = input.split(" ")
 
-        if(words.length == 1) {
-            this.sendText("Improper usage of navto command. See below:", "w")
-            this.help()
+        if (words.length == 1) {
+            this.improperUsage()
             return
         }
 
         for (const word of words) {
-            if(word == "list") {
+            if (word == "list") {
                 this.list()
                 return
-            }
-            else if(this.isLinkName(word)) {
+            } else if (this.isLinkName(word)) {
                 this.navTo(this.getLink(word)!)
                 return
-            }
-            else if(word != this.name){
+            } else if (word != this.name) {
                 this.finish(`No navto command found with name ${word}. Please try again.`, "w")
             }
         }
@@ -204,7 +204,7 @@ export class NavCommand extends Command {
 
     getLink(name: string) {
         for (const link of NavCommand.links) {
-            if(link.name == name) {
+            if (link.name == name) {
                 return link
             }
         }
@@ -212,7 +212,7 @@ export class NavCommand extends Command {
 
     isLinkName(word: string) {
         for (const link of NavCommand.links) {
-            if(link.name == word) {
+            if (link.name == word) {
                 return true
             }
         }
@@ -227,11 +227,11 @@ export class ClearCommand extends Command {
         super(data);
     }
 
-    async run(input: string) {
-        if(this.checkForHelp(input)) return
+    override async run(input: string) {
+        if (this.checkForHelp(input)) return
 
         this.sendText("clearing terminal...", "w")
-        Command.terminal.clear()
+        Terminal.terminal.clear()
     }
 
 }
@@ -244,57 +244,53 @@ export class ScriptsCommand extends Command {
         super(data);
     }
 
-    help() {
+    override help() {
         this.sendText("Usage: scripts <option>")
         this.sendText("\tscripts list: lists all available scripts to run")
         this.sendText("\tscripts run <script>: runs desired script")
         this.finish()
     }
 
-    async run(input: string) {
-        if(this.checkForHelp(input)) return
+    override async run(input: string) {
+        if (this.checkForHelp(input)) return
         const words = input.split(" ")
 
-        if(words.length == 1) {
-            this.sendText("Improper usage of script command. See below:", "w")
-            this.help()
+        if (words.length == 1) {
+            this.improperUsage()
             return
         }
 
         for (let i = 0; i < words.length; i++) {
             const word = words[i]
 
-            if(word == "list") {
+            if (word == "list") {
                 this.list()
                 return
             }
-            if(word == "run") {
-                if(words.length >= i + 2) {
+            if (word == "run") {
+                if (words.length >= i + 2) {
                     const script = words[i + 1]
 
-                    if(ScriptsCommand.scripts.includes(script)) {
+                    if (ScriptsCommand.scripts.includes(script)) {
                         this.runScript(script)
                         return
-                    }
-                    else {
+                    } else {
                         this.finish(`No script named ${script}! Please try again.`, "w")
                         return
                     }
-                }
-                else {
+                } else {
                     this.sendText("No script selected to run, see proper usage below:", "w")
                     this.help()
                     return
                 }
-            }
-            else if(word != this.name){
+            } else if (word != this.name) {
                 this.finish(`No ${this.name} command found with name ${word}. Please try again.`, "w")
             }
         }
     }
 
     runScript(script: string) {
-        switch(script) {
+        switch (script) {
             case "run.exe" : {
                 this.runEXE()
                 return;
@@ -319,5 +315,83 @@ export class ScriptsCommand extends Command {
         this.finish()
     }
 
+}
+
+export class SnakeCommand extends Command {
+
+    constructor(data: CommandData) {
+        super(data);
+    }
+
+    override help() {
+        this.sendText(`Usage: ${this.name} | ${this.name} <option>`)
+        this.sendText(`\tdifficulties: [baby, normal, gamer, impossible]`)
+        this.sendText(`\tmodes: [apples, reversed]`)
+        this.sendText(`\t\tapples: spawns more apples at once`)
+        this.sendText(`\t\treversed: controls are reversed!`)
+
+        this.sendText(`\n\t${this.name} difficulty (or -d) <option>: runs snake at a desired difficulty`)
+        this.sendText(`\t${this.name} mode (or -m) <option>: runs snake with a desired mode`)
+        this.sendText(`\nexample: ${this.name} -d normal -m reversed`, "w")
+        this.finish()
+    }
+
+    override async run(input: string) {
+        if (this.checkForHelp(input)) return
+        const words = input.split(" ")
+        let {initSnake} = await import("~/components/terminal/Snake")
+
+        let difficulty: string
+        let mode: string
+
+        if (words.length == 1) {
+            initSnake()
+            return
+        }
+
+        if (words.includes("-d") || words.includes("difficulty")) {
+            const d = words.indexOf("-d")
+            const diff = words.indexOf("difficulty")
+
+            const index = d == -1 ? diff : d
+
+            if (index + 1 <= words.length) {
+                difficulty = words[index + 1]
+            } else {
+                this.improperUsage()
+                return
+            }
+        }
+
+        if (words.includes("-d") || words.includes("difficulty")) {
+            const d = words.indexOf("-d")
+            const diff = words.indexOf("difficulty")
+
+            const index = d == -1 ? diff : d
+
+            if (index + 1 <= words.length) {
+                difficulty = words[index + 1]
+            } else {
+                this.improperUsage()
+                return
+            }
+        }
+
+        if (words.includes("-m") || words.includes("mode")) {
+            const m = words.indexOf("-m")
+            const modeInd = words.indexOf("mode")
+
+            const index = m == -1 ? modeInd : m
+
+            if (index + 1 <= words.length) {
+                mode = words[index + 1]
+            } else {
+                this.improperUsage()
+                return
+            }
+        }
+
+        initSnake(difficulty!, mode!)
+    }
 }
 

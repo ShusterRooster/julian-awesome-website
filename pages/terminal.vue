@@ -28,7 +28,7 @@ onMounted(async () => {
   margin-top: 0.1em;
   margin-bottom: 0.1em;
   font-family: "JetBrains Mono";
-  font-size: 1em;
+  font-size: 16px;
   text-wrap: wrap;
 }
 

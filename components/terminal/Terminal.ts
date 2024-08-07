@@ -5,7 +5,7 @@ import {
     FartCommand,
     HelpCommand,
     NavCommand,
-    ScriptsCommand
+    ScriptsCommand, SnakeCommand
 } from "~/components/terminal/Command";
 
 const ascii =
@@ -36,13 +36,17 @@ const display = window.innerWidth > 640 ? ascii : mobileAscii
 const greeting =
     `hello and welcome to \n
 ${display}
-version 1.0.0 alpha
+version 1.2.0 alpha
 type 'help' for available commands!
+
+you can also type <command> help for extra info on a command!
 have fun!`
 const headerText = "user@julianweb >"
 
 export default class Terminal {
     static commands: Command[] = []
+    static textOptions = ["e", "w"]
+    static terminal: Terminal
 
     div: HTMLDivElement
     module: Record<string, string>
@@ -53,7 +57,7 @@ export default class Terminal {
     constructor(terminal: HTMLDivElement, module: Record<string, string>) {
         this.div = terminal;
         this.module = module;
-        Command.terminal = this
+        Terminal.terminal = this
         this.start()
     }
 
@@ -63,6 +67,7 @@ export default class Terminal {
 
         this.div.onkeydown = (e: KeyboardEvent) => {
             if(e.key == "ArrowUp" || e.key == "ArrowDown") {
+                e.preventDefault()
                 const textBox = this.div.lastChild!.lastChild! as HTMLInputElement
 
                 if(e.key == "ArrowUp") {
@@ -74,7 +79,6 @@ export default class Terminal {
                 else if(e.key == "ArrowDown") {
                     if(this.history[this.index + 1] !== undefined) {
                         this.index += 1
-                        console.log(this.index)
                     }
                     else {
                         textBox.value = ""
@@ -120,37 +124,40 @@ export default class Terminal {
         return
     }
 
-    //[message, type]
-    sendText(t: [string, string] | string) {
-        if (!this.div) return
-
+    sendText(text: string, color?: string) {
+        // if (!this.div) return
         const element = document.createElement("p")
 
-        if (typeof t == "string") {
-            element.textContent = t
-            element.className = this.module.text
-        } else {
-            element.textContent = t[0]
-            element.classList.add(this.module.text)
+        element.textContent = text
+        element.className = this.module.text
 
-            switch (t[1]) {
-                case "e" :
-                    element.classList.add(this.module.error)
-                    break;
+        if(color) {
+            if(Terminal.textOptions.includes(color)) {
+                switch (color) {
+                    case "e" :
+                        element.classList.add(this.module.error)
+                        break;
 
-                case "w" :
-                    element.classList.add(this.module.warning)
-                    break;
-
-                case "n":
-                    return;
+                    case "w" :
+                        element.classList.add(this.module.warning)
+                        break;
+                }
+            }
+            else {
+                element.style.color = color
             }
         }
 
-        this.div.appendChild(element)
+        const child = this.div.appendChild(element)
+        child.scrollIntoView()
+        return child
     }
 
-    makeLine() {
+    replaceText(text: string, replace: HTMLParagraphElement) {
+        replace.textContent = text
+    }
+
+    makeLine(onEnter?: (value: string) => any) {
         const line = document.createElement("div")
         line.className = this.module.line
 
@@ -161,7 +168,7 @@ export default class Terminal {
         const textArea = document.createElement("input")
         textArea.type = "text"
         textArea.classList.add(this.module.textArea, this.module.text)
-        this.onEnter(textArea)
+        this.onEnter(textArea, onEnter)
 
         line.appendChild(header)
         line.appendChild(textArea)
@@ -178,7 +185,7 @@ export default class Terminal {
         return line
     }
 
-    onEnter(input: HTMLInputElement) {
+    onEnter(input: HTMLInputElement, fn?: (value: string) => any) {
         input.onkeydown = (e: KeyboardEvent) => {
             const value = input.value.trim()
 
@@ -188,7 +195,8 @@ export default class Terminal {
                 this.history.push(value)
                 this.index = this.history.length
 
-                this.handleInput(value)
+                if(fn) fn(value)
+                else this.handleInput(value)
             }
         }
     }
@@ -202,43 +210,48 @@ export default class Terminal {
     }
 }
 
+const tabs = 1
+
+const snake = new SnakeCommand({
+    name: "snake",
+    desc: "Play a game of snake!",
+    tab: tabs
+})
 
 const fart = new FartCommand({
     name: "fart",
     desc: "Play a fart sound lol",
-    tab: 1
-})
-
-const help = new HelpCommand({
-    name: "help",
-    desc: "Shows all terminal and what they do",
-    tab: 1
-})
-
-const debug = new DebugCommand({
-    name: "debug",
-    desc: "Throws an error message to test the terminals error handling.",
-    tab: 1
+    tab: tabs
 })
 
 const navTo = new NavCommand({
     name: "navto",
     desc: "Navigates to a page on the website",
-    tab: 1
-})
-
-const clear = new ClearCommand({
-    name: "clear",
-    desc: "Clears the terminal, gives you a fresh start!",
-    tab: 1
+    tab: tabs
 })
 
 const scripts = new ScriptsCommand({
     name: "scripts",
     desc: "Runs a given script",
-    tab: 1
+    tab: tabs
 })
 
+const help = new HelpCommand({
+    name: "help",
+    desc: "Shows all terminal and what they do",
+    tab: tabs
+})
 
-Terminal.commands.push(fart, help, debug, navTo, clear, scripts)
-console.log(Terminal.commands)
+const clear = new ClearCommand({
+    name: "clear",
+    desc: "Clears the terminal, gives you a fresh start!",
+    tab: tabs
+})
+
+const debug = new DebugCommand({
+    name: "debug",
+    desc: "Throws an error message to test the terminals error handling.",
+    tab: tabs
+})
+
+Terminal.commands.push(fart, help, navTo, clear, scripts, snake)

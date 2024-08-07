@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-    modules: ['@nuxtjs/google-fonts', '@vueuse/nuxt'],
+    modules: ['@nuxtjs/google-fonts', '@vueuse/nuxt', "@nuxt/eslint"],
     devtools: {enabled: true},
     pages: true,
     ssr: false,

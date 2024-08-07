@@ -33,7 +33,6 @@ function rotateToDeg(deg: number, element: HTMLImageElement, transform = false) 
     let str = `rotateY(${rotation}deg)`
 
     if (transform) str += " translateY(-10%)"
-    console.log(str)
     element.style.transform = str
 
     setTimeout(() => {
