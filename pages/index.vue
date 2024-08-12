@@ -51,19 +51,19 @@ import {StarFall} from "#components";
         I plan on adding a lot more so you can fully immerse yourself in the julian experience!</p>
 
       <div id="julianPics">
-        <img id="matrix" src="~/assets/julian-stuff/julianmatrix.png" alt="matrix julian"
+        <img id="matrix" src="~/assets/julian/julianmatrix.png" alt="matrix julian"
              style="grid-area: 1 / 3 / 4 / span 5"/>
 
-        <img id="pants" src="~/assets/julian-stuff/julianpants.png" alt="julian w pants"
+        <img id="pants" src="~/assets/julian/julianpants.png" alt="julian w pants"
              style="grid-area: 2 / 1 / 4 / 2"/>
 
-        <img id="fairy" src="~/assets/julian-stuff/julianfairy.png" alt="julian fairy"
+        <img id="fairy" src="~/assets/julian/julianfairy.png" alt="julian fairy"
              style="grid-area: 1 / 1 / 2 / 2"/>
 
-        <img id="epic" src="~/assets/julian-stuff/le epic face.png" alt="le epic face"
+        <img id="epic" src="~/assets/julian/le epic face.png" alt="le epic face"
              style="grid-area: 1 / 2 / 2 / 3"/>
 
-        <img id="camera" src="~/assets/julian-stuff/juliancamera.png" alt="julian camera"
+        <img id="camera" src="~/assets/julian/juliancamera.png" alt="julian camera"
              style="grid-area: 2 / 2 / 4 / 3"/>
       </div>
 

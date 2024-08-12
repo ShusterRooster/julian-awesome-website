@@ -59,10 +59,10 @@ onClickOutside(posed, evt => {
 
 <template>
   <img class="julian" id="posed" ref="posed"
-       src="~/assets/julian-stuff/posed.png" alt="julian nav posed">
+       src="~/assets/julian/posed.png" alt="julian nav posed">
 
   <img class="julian" id="standing" ref="standing"
-       src="~/assets/julian-stuff/standing.png" alt="julian nav standing">
+       src="~/assets/julian/standing.png" alt="julian nav standing">
 
   <div id="popout" ref="popout">
     <NavLinks ref="links"/>

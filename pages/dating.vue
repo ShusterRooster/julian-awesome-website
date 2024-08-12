@@ -83,7 +83,7 @@ onMounted(async () => {
                style="grid-area: 2 / 1 / 2 / 1"/>
 
           <img id="mobileStanding" ref="mobileStanding"
-               src="~/assets/julian-stuff/julianstanding.png" alt="julian standing (he's so handsome)"/>
+               src="~/assets/julian/julianstanding.png" alt="julian standing (he's so handsome)"/>
 
           <img src="~/assets/dating/smilie.gif" alt="weird asf smilie face"
                style="grid-area: 1 / 3 / 1 / 3"/>
@@ -114,7 +114,7 @@ onMounted(async () => {
 
       <div id="desktopImages" class="notMobile">
         <img id="standing" class="notMobile" ref="standing" @mouseover="rotateY()"
-             src="~/assets/julian-stuff/julianstanding.png" alt="julian standing (he's so handsome)"
+             src="~/assets/julian/julianstanding.png" alt="julian standing (he's so handsome)"
              style=""/>
 
         <img src="~/assets/dating/heart-jumping.gif" alt="heart jumping"
