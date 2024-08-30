@@ -19,6 +19,10 @@ defineProps<{
     <IconLink name="terminal" to="/terminal">
       <img src="~/assets/misc/computer_surfing.gif" alt="terminal icon"/>
     </IconLink>
+
+    <IconLink name="contact" to="/contact">
+      <img src="~/assets/contact/flamingo.gif" alt="contact icon"/>
+    </IconLink>
   </div>
 </template>
 

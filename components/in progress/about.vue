@@ -6,7 +6,7 @@
   <div class="background" id="background"></div>
 
   <div id="container">
-    <img id="header" src="~/assets/about/answers-about-god.gif" alt="about me"/>
+    <img id="header" src="../../assets/about/answers-about-god.gif" alt="about me"/>
 
     <FunFact gif="flex" caption="strong" fact="julian is the strongest ever of all time... so big muscles  wow"></FunFact>
 
