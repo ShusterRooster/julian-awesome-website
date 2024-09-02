@@ -33,7 +33,6 @@ function rotateToDeg(deg: number, element: HTMLImageElement, transform = false) 
     let str = `rotateY(${rotation}deg)`
 
     if (transform) str += " translateY(-10%)"
-    console.log(str)
     element.style.transform = str
 
     setTimeout(() => {
@@ -57,7 +56,8 @@ onMounted(async () => {
 
 <template>
   <title>dating <3</title>
-  <link rel="icon" href="/heart.gif" type="image/gif">
+<!--  <link rel="icon" href="/animated/heart.gif" type="image/gif">-->
+  <link rel="shortcut icon" href="/heart.png" type="image/png">
   <div class="background" id="background"></div>
   <div id="container">
 
@@ -84,7 +84,7 @@ onMounted(async () => {
                style="grid-area: 2 / 1 / 2 / 1"/>
 
           <img id="mobileStanding" ref="mobileStanding"
-               src="~/assets/julian-stuff/julianstanding.png" alt="julian standing (he's so handsome)"/>
+               src="~/assets/julian/julianstanding.png" alt="julian standing (he's so handsome)"/>
 
           <img src="~/assets/dating/smilie.gif" alt="weird asf smilie face"
                style="grid-area: 1 / 3 / 1 / 3"/>
@@ -115,7 +115,7 @@ onMounted(async () => {
 
       <div id="desktopImages" class="notMobile">
         <img id="standing" class="notMobile" ref="standing" @mouseover="rotateY()"
-             src="~/assets/julian-stuff/julianstanding.png" alt="julian standing (he's so handsome)"
+             src="~/assets/julian/julianstanding.png" alt="julian standing (he's so handsome)"
              style=""/>
 
         <img src="~/assets/dating/heart-jumping.gif" alt="heart jumping"

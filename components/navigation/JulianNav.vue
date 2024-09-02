@@ -53,10 +53,10 @@ function bothLoaded(): Promise<void> {
 
   <div id="julianNav">
     <img id="julianTop" @load="topLoaded=true" style="visibility: hidden"
-         src="../../assets/julian-stuff/julianfacetop.png" alt="julian face top"/>
+         src="~/assets/julian/julianfacetop.png" alt="julian face top"/>
     <NavLinks id="links"></NavLinks>
     <img id="julianBottom" @load="bottomLoaded=true" style="visibility: hidden"
-         src="../../assets/julian-stuff/julianfacebottom.png" alt="julian face bottom"/>
+         src="~/assets/julian/julianfacebottom.png" alt="julian face bottom"/>
   </div>
 
 </template>

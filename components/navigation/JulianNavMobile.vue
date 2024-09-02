@@ -50,7 +50,7 @@ function show() {
   popout.value.style.left = `${0}px`
 }
 
-onClickOutside(posed, evt => {
+onClickOutside(posed => {
   if(showing)
     hide()
 })
@@ -59,10 +59,10 @@ onClickOutside(posed, evt => {
 
 <template>
   <img class="julian" id="posed" ref="posed"
-       src="~/assets/julian-stuff/posed.png" alt="julian nav posed">
+       src="~/assets/julian/posed.png" alt="julian nav posed">
 
   <img class="julian" id="standing" ref="standing"
-       src="~/assets/julian-stuff/standing.png" alt="julian nav standing">
+       src="~/assets/julian/standing.png" alt="julian nav standing">
 
   <div id="popout" ref="popout">
     <NavLinks ref="links"/>
@@ -77,14 +77,14 @@ onClickOutside(posed, evt => {
   display: block;
 
   padding: 20px;
-  bottom: 2vh;
+  top: 2vh;
 
   background-color: rgba(12, 12, 12, 0.95);
   border-radius: 35px;
   width: 65vw;
   height: auto;
   transition: all 0.75s ease-in-out;
-  z-index: 99;
+  z-index: 98;
 }
 
 #popout * {
@@ -100,7 +100,7 @@ onClickOutside(posed, evt => {
 
   max-width: 15vw;
   height: auto;
-  z-index: 98;
+  z-index: 99;
 }
 
 /* computers */

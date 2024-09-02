@@ -47,25 +47,33 @@ import {StarFall} from "#components";
       <img id="logo" src="~/assets/julianlogo.gif" alt="julian awesome website logo"/>
       <h2>omg hello welcome to julian awesome epic website!!!!</h2>
 
-      <p>hello dear visitor! this is an early version of my website!
-        I plan on adding a lot more so you can fully immerse yourself in the julian experience!</p>
+      <h2>hello dear visitor! welcome to the current state of the julian awesome website experience! click the little julian at the top of your screen to start exploring!!!</h2>
 
       <div id="julianPics">
-        <img id="matrix" src="~/assets/julian-stuff/julianmatrix.png" alt="matrix julian"
-             style="grid-area: 1 / 3 / 4 / span 5"/>
+        <img src="~/assets/julian/julianmatrix.png" alt="matrix julian"
+             style="grid-area: 1 / 3 / span 2 / span 3"/>
 
-        <img id="pants" src="~/assets/julian-stuff/julianpants.png" alt="julian w pants"
-             style="grid-area: 2 / 1 / 4 / 2"/>
+<!--        <img src="~/assets/julian/julianface.png" alt="julian face"-->
+<!--             style="grid-area: 3 / 4 / 3 / 4"/>-->
 
-        <img id="fairy" src="~/assets/julian-stuff/julianfairy.png" alt="julian fairy"
+<!--        <img src="~/assets/home/watermelon.png" alt="scary watermelon (he is my friend)"-->
+<!--             style="grid-area: 3 / 3 / 3 / 3"/>-->
+
+        <img src="~/assets/julian/julianpants.png" alt="julian w pants"
+             style="grid-area: 2 / 1 / span 4 / 2"/>
+
+        <img src="~/assets/julian/julianfairy.png" alt="julian fairy"
              style="grid-area: 1 / 1 / 2 / 2"/>
 
-        <img id="epic" src="~/assets/julian-stuff/le epic face.png" alt="le epic face"
+        <img src="~/assets/julian/le epic face.png" alt="le epic face"
              style="grid-area: 1 / 2 / 2 / 3"/>
 
-        <img id="camera" src="~/assets/julian-stuff/juliancamera.png" alt="julian camera"
+        <img src="~/assets/julian/juliancamera.png" alt="julian camera"
              style="grid-area: 2 / 2 / 4 / 3"/>
       </div>
+
+      <h2>this is still a relatively early version of the site so please check back in every so often for updates!</h2>
+      <h2>the desktop and mobile versions of the website are markedly different so please check em out!</h2>
 
       <ChangeLog></ChangeLog>
       <img id="swimmin" src="~/assets/home/swimmin.gif" alt="fish swimming #epic">
@@ -137,7 +145,6 @@ import {StarFall} from "#components";
   object-fit: contain;
   max-width: inherit;
   height: auto;
-
 }
 
 p {
@@ -145,6 +152,10 @@ p {
   max-width: 1280px;
   margin: 0 auto;
   padding: 10px;
+}
+
+h2 {
+  font-size: 2em;
 }
 
 * {
@@ -217,6 +228,10 @@ p {
     width: 75vw;
   }
 
+  h2 {
+    font-size: 1.15em;
+  }
+
 }
 
 /* Medium devices such as tablets (768px and up) */
@@ -236,17 +251,20 @@ p {
 
 #julianPics {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 0.5fr);
-  grid-auto-flow: row dense;
+  //grid-auto-flow: row dense;
   height: fit-content;
   justify-items: center;
   padding: 20px;
+  width: 100%;
 }
 
 #julianPics img {
   max-width: 75%; /* Ensures assets fill their containers */
   height: auto;
+
+  object-fit: contain;
 }
 
 </style>

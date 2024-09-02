@@ -17,7 +17,8 @@ onMounted(async () => {
 
 <template>
   <title>terminal</title>
-  <link rel="icon" href="/terminal.gif" type="image/gif">
+<!--  <link rel="icon" href="/animated/terminal.gif" type="image/gif">-->
+  <link rel="shortcut icon" href="/terminal.png" type="image/png">
   <div id="terminal"/>
 </template>
 
@@ -27,9 +28,10 @@ onMounted(async () => {
   white-space: pre;
   margin-top: 0.1em;
   margin-bottom: 0.1em;
-  font-family: "JetBrains Mono";
-  font-size: 1em;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 16px;
   text-wrap: wrap;
+  //line-height: 1em;
 }
 
 .error {
