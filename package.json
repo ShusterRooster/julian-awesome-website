@@ -24,6 +24,5 @@
     "nuxt": "^3.11.2",
     "paper": "^0.12.17",
     "vue": "^3.4.27"
-  },
-  "packageManager": "pnpm@9.5.0+sha1.8c155dc114e1689d18937974f6571e0ceee66f1d"
+  }
 }

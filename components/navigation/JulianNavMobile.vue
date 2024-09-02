@@ -8,6 +8,7 @@ defineProps<{
   right?: String,
 }>()
 
+const nav = ref()
 const posed = ref()
 const standing = ref()
 const popout = ref()
@@ -23,12 +24,19 @@ onMounted(async () => {
     hide()
   }
 
-  posed.value.ontouchend = () => {
-    hide()
-  }
+  // posed.value.ontouchend = () => {
+  //   hide()
+  // }
+  //
+  // standing.value.ontouchend = () => {
+  //   show()
+  // }
 
-  standing.value.ontouchend = () => {
-    show()
+  nav.value.ontouchend = () => {
+    if(showing)
+      hide()
+    else
+      show()
   }
 
   links.value.ontouchend = () => {
@@ -50,19 +58,26 @@ function show() {
   popout.value.style.left = `${0}px`
 }
 
-onClickOutside(posed => {
-  if(showing)
-    hide()
-})
+
+// onClickOutside(posed => {
+//   console.log("hi")
+//
+//   // if(showing)
+//   //   hide()
+// })
 
 </script>
 
 <template>
-  <img class="julian" id="posed" ref="posed"
-       src="~/assets/julian/posed.png" alt="julian nav posed">
 
-  <img class="julian" id="standing" ref="standing"
-       src="~/assets/julian/standing.png" alt="julian nav standing">
+  <div class="julian" ref="nav">
+    <img id="posed" ref="posed"
+         src="~/assets/julian/posed.png" alt="julian nav posed">
+
+    <img id="standing" ref="standing"
+         src="~/assets/julian/standing.png" alt="julian nav standing">
+  </div>
+
 
   <div id="popout" ref="popout">
     <NavLinks ref="links"/>
@@ -97,9 +112,11 @@ onClickOutside(posed => {
   bottom: v-bind(bottom);
   left: v-bind(left);
   right: v-bind(right);
+  z-index: 99;
+}
 
+.julian img {
   max-width: 15vw;
-  height: auto;
   z-index: 99;
 }
 
