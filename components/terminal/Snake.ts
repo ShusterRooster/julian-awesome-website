@@ -17,7 +17,7 @@ const snakeChar = "■"
 const empty = "□"
 const appleChar = "🍎"
 
-const width = window.innerWidth <= 640 ? 30 : 40
+const width = window.innerWidth <= 640 ? 30 : 60
 const height = 30
 const spawn = new Point((width) / 2, (height) / 2)
 const startLength = 4

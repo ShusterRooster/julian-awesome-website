@@ -254,4 +254,5 @@ const debug = new DebugCommand({
     tab: tabs
 })
 
-Terminal.commands.push(fart, help, navTo, clear, scripts, snake)
+//no snake rn, the text spacing is broken rn :(
+Terminal.commands.push(fart, help, navTo, clear, scripts)

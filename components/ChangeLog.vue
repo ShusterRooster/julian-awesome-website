@@ -72,6 +72,17 @@ onMounted(async () => {
     </div>
     <img src="~/assets/borders/starsilverborder.gif" style="margin-bottom: 15px" alt="#epic star border">
     <div id="entries">
+
+      <ChangeLogEntry title="happy birthday update!!! 🎉" date="september 2, 2024">
+        hello julian awesome website fans!! today is my 20th birthday!!!!<br>
+
+        later today, I will be hosting a birthday party in new paltz. i printed and distributed ~40 flyers so hopefully i meet some amazing new people and have a great time :)<br><br>
+        in preparation for this event, I have added a <NuxtLink to="/contact">contact</NuxtLink> page so that people can scan my amazing cyborg chip and be able to contact me.<br><br>
+        hope you enjoy!
+
+        -julian
+      </ChangeLogEntry>
+
       <ChangeLogEntry title="major update!" date="july 30, 2024">
         hello julian awesome website fans! I come to you with news of a massive update I have been working on!<br><br>
 
