@@ -1,32 +1,4 @@
 <script setup lang="ts">
-
-const phoneImg = ref<HTMLImageElement>()
-const phoneScreen = ref<HTMLDivElement>()
-
-async function onLoad() {
-
-  //screen top left is (175, 40)
-  //btm right (860, 422)
-  //screen is (685, 382)
-  //max width = 66%
-  //max height = 53.5%
-  if (phoneImg.value) {
-    const phoneVal = phoneImg.value
-    const scaleX = phoneVal.width / phoneVal.naturalWidth
-    const scaleY = phoneVal.height / phoneVal.naturalHeight
-
-    const screen = phoneScreen.value
-
-    screen.style.maxWidth = 66 * scaleX + '%'
-    screen.style.maxHeight = 58 * scaleY + '%'
-
-    console.log(scaleX, scaleY)
-
-    screen.style.x = phoneVal.offsetLeft + (175 * scaleX) + "px"
-    screen.style.top = phoneVal.offsetTop + (42 * scaleY) + "px"
-  }
-}
-
 const sitting = ref<HTMLImageElement>()
 const waving = ref<HTMLImageElement>()
 const interact = ref<HTMLDivElement>()
@@ -38,6 +10,8 @@ function waveJulian() {
     waving.value.style.display = 'block'
 
     interact.value.style.opacity = 0
+
+    hello.value.style.display = 'block'
     hello.value.style.opacity = 1
 
     setTimeout(() => {
@@ -55,8 +29,8 @@ function waveJulian() {
 
 <template>
   <title>contact</title>
-  <link rel="icon" href="/dancingsmiley.gif" type="image/gif">
-  <link rel="shortcut icon" href="/dancingsmiley.gif" type="image/gif">
+<!--  <link rel="icon" href="/animated/dancingsmiley.gif" type="image/gif">-->
+  <link rel="shortcut icon" href="/smiley.png" type="image/png">
 
   <div class="background" id="background"></div>
 
@@ -65,17 +39,15 @@ function waveJulian() {
     <img id="threat" src="~/assets/contact/contact.gif" alt="you will contact me">
 
     <div id="info">
-      <div class="half">
+      <div class="half notMobile">
         <img src="../assets/julian/point.gif" alt="pointing julian">
       </div>
 
       <div class="half" style="gap: 2em">
-        <h1>here's how to contact me:</h1>
+        <h1 id="howTo">here's how to contact me:</h1>
 
         <div id="phone">
-          <img src="~/assets/contact/phone.png" ref="phoneImg" id="phoneImg" @load="onLoad" alt="phone">
-
-          <div id="phoneScreen" ref="phoneScreen">
+          <div id="phoneScreen">
             <img src="~/assets/contact/instantgram.gif" alt="instant gram">
             <img src="~/assets/borders/electric.gif" alt="dragon border">
 
@@ -93,31 +65,28 @@ function waveJulian() {
         </div>
 
         <div id="email">
-          <div class="column">
+          <div class="column notMobile">
             <img src="../assets/contact/email/envelopedance1.gif" alt="envelope dance 1">
             <img src="../assets/contact/email/emailclr.gif" alt="email boss lady">
             <img src="../assets/contact/email/cat_mail.gif" alt="cat mail!">
             <img src="../assets/contact/email/emailblock.gif" alt="email block">
-
           </div>
 
           <div id="emailCenter">
             <img src="../assets/contact/email/emaillogo.gif" alt="email me..."/>
             <img src="~/assets/borders/frogborder.gif" alt="frog border"/>
 
-            <NuxtLink to="mailto:julianawesomewebsite@proton.me"
-                      style="display: flex; flex-direction: column; align-items: center; padding-bottom: 2em">
-              <img src="../assets/contact/email/catlickenvelope.gif"
-                   style="width: 15vw;"
+            <NuxtLink to="mailto:julianawesomewebsite@proton.me" id="mailLink">
+              <img id="cat" src="../assets/contact/email/catlickenvelope.gif"
                    alt="cat licking envelope">
 
-              <h2 style="font-size: 2em" class="color">click here!</h2>
+              <h2 style="font-size: 2em; margin-bottom: 0.25em" class="color">click here!</h2>
             </NuxtLink>
 
-            <h2>julianawesomewebsite@proton.me</h2>
+            <h2 id="address">julianawesomewebsite@proton.me</h2>
           </div>
 
-          <div class="column">
+          <div class="column notMobile">
             <img src="../assets/contact/email/envelopedance2.gif" alt="envelope dance 2">
             <img src="../assets/contact/email/Email1.gif" alt="email gif">
             <img src="../assets/contact/email/email-mice.gif" alt="email mice">
@@ -137,8 +106,8 @@ function waveJulian() {
 
       <h2 id="hello" ref="hello">hello!</h2>
 
-      <img src="~/assets/julian/sitting.png" ref="sitting" alt="sitting">
-      <img src="~/assets/julian/waving.gif" style="display: none" ref="waving" alt="waving">
+      <img src="~/assets/julian/sitting.png" class="lilbro" ref="sitting" style="display: block" alt="sitting">
+      <img src="~/assets/julian/waving.gif" class="lilbro" style="display: none" ref="waving" alt="waving">
     </div>
 
   </div>
@@ -152,7 +121,7 @@ function waveJulian() {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 5% 5% 0 5%;
+  padding: 3% 5% 0 5%;
 }
 
 #threat {
@@ -191,9 +160,16 @@ img {
 #phone {
   display: flex;
   justify-content: center;
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+
+  width: 1036px;
+  height: 719px;
   object-fit: contain;
   position: relative;
+
+  background: url("~/assets/contact/phone.png") no-repeat center;
+  background-size: contain;
 }
 
 #phoneScreen {
@@ -207,6 +183,11 @@ img {
   background-color: rgba(12, 12, 12, 0.8);
   text-align: center;
   text-wrap: wrap;
+
+  left: 16.98%;
+  top: 5.84%;
+  width: 65.93%;
+  height: 52.85%;
 }
 
 #email {
@@ -233,8 +214,19 @@ img {
   //padding-bottom: 10%;
 }
 
+#mailLink {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 2em
+}
+
+#cat {
+  width: 15vw;
+}
+
 #hello, #interact {
-  transition: opacity 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
 #interact {
@@ -246,12 +238,22 @@ img {
   margin: 10%;
 }
 
+#sittingJulian {
+  width: 100%;
+}
+
+.lilbro {
+  width: 100%;
+}
+
 #hello {
   position: absolute;
   opacity: 0;
   font-size: 8em;
   left: 15%;
-  top: 20%;
+  bottom: 20%;
+
+  display: none;
 
   text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #e60073, 0 0 40px #e60073, 0 0 50px #e60073, 0 0 60px #e60073, 0 0 70px #e60073;
 }
@@ -292,6 +294,92 @@ h1 {
 
 h2 {
   font-size: 2em;
+}
+
+@media only screen and (max-width: 1920px) {
+
+  #container {
+    padding-top: 5%;
+  }
+
+  #howTo {
+    margin-bottom: 0;
+  }
+
+  #email {
+    padding: 0;
+    background-size: 150% 200%;
+    width: 100%;
+  }
+
+  #emailCenter {
+    padding: 5%;
+    box-sizing: border-box;
+  }
+
+  #mailLink {
+    padding-bottom: 0;
+  }
+
+  #address {
+    font-size: 0.75em;
+  }
+
+  #cat {
+    width: 50vw;
+  }
+
+  #phone {
+    background-image: none;
+
+    width: auto;
+    height: auto;
+  }
+
+  #phoneScreen {
+    position: relative;
+    border-radius: 25px;
+
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .half {
+    padding: 0;
+    max-width: 100%;
+  }
+
+  #threat {
+    width: 90vw;
+  }
+
+  #sittingJulian {
+    margin-top: 3em;
+  }
+
+  #interact {
+    margin: 0 0 0 1em;
+  }
+
+  #hello {
+    font-size: 2.5em;
+    left: 10%;
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 2em;
+  }
+
+  h2 {
+    font-size: 1em;
+  }
+
+  .notMobile {
+    display: none;
+  }
 }
 
 * {

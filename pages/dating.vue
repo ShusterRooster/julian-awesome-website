@@ -56,7 +56,8 @@ onMounted(async () => {
 
 <template>
   <title>dating <3</title>
-  <link rel="icon" href="/heart.gif" type="image/gif">
+<!--  <link rel="icon" href="/animated/heart.gif" type="image/gif">-->
+  <link rel="shortcut icon" href="/heart.png" type="image/png">
   <div class="background" id="background"></div>
   <div id="container">
 
