@@ -12,7 +12,7 @@ const props = defineProps<{
     <NuxtLink :to="props.to">
       {{ props.name }}
 
-      <span id="icon" ref="icon">
+      <span id="icon">
         <slot></slot>
       </span>
     </NuxtLink>
@@ -34,7 +34,7 @@ const props = defineProps<{
   justify-content: space-evenly;
   gap: 0.25em;
 
-  margin: 10px 0 10px 0 ;
+  margin: 10px 0 10px 0;
 
   transition: transform 0.5s ease-out;
   transform-origin: top left;
@@ -45,7 +45,7 @@ const props = defineProps<{
 a {
   color: white;
   text-decoration: none;
-  font-family: "Micro 5";
+  font-family: "Micro 5", monospace;
 }
 
 #icon {
@@ -68,7 +68,7 @@ a {
   color: white;
   position: relative;
   text-decoration: none;
-  font-family: "Micro 5";
+  font-family: "Micro 5", monospace;
   font-size: 25px;
 }
 

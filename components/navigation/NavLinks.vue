@@ -20,6 +20,10 @@ defineProps<{
       <img src="~/assets/misc/computer_surfing.gif" alt="terminal icon"/>
     </IconLink>
 
+    <IconLink name="about" to="/about">
+      <img src="~/assets/misc/3dbonehead.gif" alt="about icon"/>
+    </IconLink>
+
     <IconLink name="contact" to="/contact">
       <img src="~/assets/contact/flamingo.gif" alt="contact icon"/>
     </IconLink>
