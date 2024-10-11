@@ -34,17 +34,17 @@ import {StarFall} from "#components";
 
     <div id="centerContent">
       <div id="mobileContainer">
-        <img id="julianLogo" src="~/assets/julianlogomobile.gif" alt="julian"
+        <img id="julianLogo" src="~/assets/logos/julianlogomobile.gif" alt="julian"
              style="align-self: start"/>
 
-        <img id="awesomeLogo" src="~/assets/awesomelogo.gif" alt="awesome"
+        <img id="awesomeLogo" src="~/assets/logos/awesomelogo.gif" alt="awesome"
              style="align-self: center"/>
 
-        <img id="websiteLogo" src="~/assets/websitelogo.gif" alt="website"
+        <img id="websiteLogo" src="~/assets/logos/websitelogo.gif" alt="website"
              style="align-self: end"/>
       </div>
 
-      <img id="logo" src="~/assets/julianlogo.gif" alt="julian awesome website logo"/>
+      <img id="logo" src="~/assets/logos/julianlogo.gif" alt="julian awesome website logo"/>
       <h2>omg hello welcome to julian awesome epic website!!!!</h2>
 
       <h2>hello dear visitor! welcome to the current state of the julian awesome website experience! click the little julian at the top of your screen to start exploring!!!</h2>
@@ -106,7 +106,7 @@ import {StarFall} from "#components";
   filter: drop-shadow(0 0 2em #89DD36);
 }
 
-#mobileContainer, .marquee, #mobileHeader {
+#mobileContainer {
   display: none;
 }
 
@@ -176,10 +176,6 @@ h2 {
 
   #logo {
     display: none;
-  }
-
-  .marquee {
-    display: initial;
   }
 
   .overlay {
