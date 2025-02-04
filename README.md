@@ -5,11 +5,12 @@ this is where all the cool stuff happens.
 
 
 ### general to-dos:
-* make images smaller!! faster loading times!!!
-* get animated icons working and have fallbacks
-* add terminal commands (no one understands it anyways lol)
-* change or make phone thing stable
-* 
+* finish archive
+* make archive mobile
+* fix and cleanup about
+* figure out julian nav for mobile
+* get snake working again
+* finish blog functionality
 ```
                \
                 \\

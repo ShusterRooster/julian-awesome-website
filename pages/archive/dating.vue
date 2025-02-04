@@ -1,4 +1,29 @@
 <script setup lang="ts">
+useSeoMeta({
+  title: 'dating <3',
+  description: 'ARCHIVED: my dating site hehe',
+  ogTitle: 'dating <3',
+  ogDescription: 'ARCHIVED: my dating site hehe',
+  ogImage: '[og:image]',
+  ogUrl: 'julianshuster.com/archive/dating',
+  twitterTitle: '[twitter:title]',
+  twitterDescription: '[twitter:description]',
+  twitterImage: '[twitter:image]',
+  twitterCard: 'summary'
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/gif',
+      href: '/icons/heart.gif'
+    }
+  ]
+})
 
 const rotateSpeed = 1
 let rotation = 0
@@ -55,9 +80,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <title>dating <3</title>
-<!--  <link rel="icon" href="/animated/heart.gif" type="image/gif">-->
-  <link rel="shortcut icon" href="/heart.png" type="image/png">
   <div class="background" id="background"></div>
   <div id="container">
 
@@ -101,10 +123,11 @@ onMounted(async () => {
         <br><br>
 
 
-        <div style="position: relative">
-          <img id="interested" style="border-radius: 35px" src="~/assets/dating/interestedtext.gif" alt="interested?"/>
-          <img class="arrow" style="transform: rotateY(180deg)" src="~/assets/dating/sign-arrows.gif"
+        <div id="interestedDiv">
+          <img id="interested" src="~/assets/dating/interestedtext.gif" alt="interested?"/>
+            <img id="arrow" src="~/assets/dating/sign-arrows.gif"
                alt="flashing arrow sign"/>
+
         </div>
 
         <h2>just read the reviews!!</h2>
@@ -136,6 +159,10 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+* {
+  line-height: 1.25;
+}
+
 #dating-text {
   width: 15vw;
   margin: 30px;
@@ -166,11 +193,13 @@ onMounted(async () => {
 }
 
 h1 {
-  font-size: 50px
+  font-size: 50px;
+  margin: 1em 0 1em;
 }
 
 h2 {
-  font-size: 35px
+  font-size: 35px;
+  margin: 1em 0 1em;
 }
 
 #hello {
@@ -184,11 +213,22 @@ h2 {
   max-width: 50vw;
 }
 
-.arrow {
-  position: absolute;
+#interestedDiv {
+  display: flex;
+  position: relative;
+  justify-content: center;
+}
+
+#interested {
+  border-radius: 35px
+}
+
+#arrow {
   vertical-align: bottom;
   width: 5%;
-  bottom: 10px
+  transform: rotateY(180deg) translateY(20px);
+
+  align-self: start;
 }
 
 #background {
@@ -251,7 +291,7 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 3vh;
+    padding-top: 3vh;
     width: 100vw;
   }
 

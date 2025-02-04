@@ -1,91 +1,98 @@
 <script setup lang="ts">
-import {StarFall} from "#components";
+import NavLinks from "~/components/navigation/NavLinks.vue";
+
+useSeoMeta({
+  title: 'julian AWESOME home',
+  description: 'welcome to the julian awesome website experience!!!',
+  ogTitle: 'home',
+  ogDescription: 'welcome to the julian awesome website experience!!!',
+  ogImage: '[og:image]',
+  ogUrl: 'julianshuster.com',
+  twitterTitle: '[twitter:title]',
+  twitterDescription: '[twitter:description]',
+  twitterImage: '[twitter:image]',
+  twitterCard: 'summary'
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/icons/dinosaur.png'
+    }
+  ]
+})
+
 </script>
 
 <template>
-  <title>julian epic awesome website</title>
-  <Link rel="icon" type="image/x-icon" href="/dinosaur.png"></Link>
-  <StarFall/>
+  <div class="background" id="back"></div>
 
-  <div class="overlay">
-    <div id="imgColumnLeft" style="left: 0">
-      <img src="~/assets/home/butterflies.gif" alt="butterflies"/>
-      <img src="~/assets/home/gnome-toilet.gif" alt="gnome toilet"/>
-      <img src="~/assets/home/apple.gif" alt="apple"/>
-      <img src="~/assets/home/sharkie.gif" alt="shark!"/>
+  <div id="container">
+    <div id="mobileContainer">
+      <img src="~/assets/logos/julianlogomobile.gif" alt="julian"
+           style="align-self: start"/>
+
+      <img src="~/assets/logos/awesomelogo.gif" alt="awesome"
+           style="align-self: center"/>
+
+      <img src="~/assets/logos/websitelogo.gif" alt="website"
+           style="align-self: end"/>
     </div>
 
-    <!--    <div id="mobileHeader">-->
-    <!--      <Marquee class="marquee" height="3vh">-->
-    <!--        <img src="~/assets/home/butterflies.gif" alt="butterflies"/>-->
-    <!--        <img src="~/assets/home/gnome-toilet.gif" alt="gnome toilet"/>-->
-    <!--        <img src="~/assets/home/apple.gif" alt="apple"/>-->
-    <!--        <img src="~/assets/home/sharkie.gif" alt="shark!"/>-->
-    <!--      </Marquee>-->
+    <div id="starBorder"></div>
+    <img id="logo" src="~/assets/logos/julianlogo.gif" alt="julian awesome website logo"/>
 
+    <div id="mainPanel">
+      <div class="unskew">
+        <img src="~/assets/home/welcome2.gif" alt="welcome">
 
-    <!--      <Marquee class="marquee" height="3vh">-->
-    <!--        <img src="~/assets/home/flying-saucer.gif" alt="flying saucer"/>-->
-    <!--        <img src="~/assets/home/fish-graphic.gif" alt="fishies!"/>-->
-    <!--        <img src="~/assets/home/lightbulb.gif" alt="lightbulb guy"/>-->
-    <!--        <img src="~/assets/home/cactus.gif" alt="cactus"/>-->
-    <!--      </Marquee>-->
-    <!--    </div>-->
-
-    <div id="centerContent">
-      <div id="mobileContainer">
-        <img id="julianLogo" src="~/assets/logos/julianlogomobile.gif" alt="julian"
-             style="align-self: start"/>
-
-        <img id="awesomeLogo" src="~/assets/logos/awesomelogo.gif" alt="awesome"
-             style="align-self: center"/>
-
-        <img id="websiteLogo" src="~/assets/logos/websitelogo.gif" alt="website"
-             style="align-self: end"/>
+        <img src="~/assets/home/fishspinning.gif" alt="fishie!" style="position: absolute; right: 10%; top: 20%;">
       </div>
 
-      <img id="logo" src="~/assets/logos/julianlogo.gif" alt="julian awesome website logo"/>
-      <h2>omg hello welcome to julian awesome epic website!!!!</h2>
-
-      <h2>hello dear visitor! welcome to the current state of the julian awesome website experience! click the little julian at the top of your screen to start exploring!!!</h2>
-
-      <div id="julianPics">
-        <img src="~/assets/julian/julianmatrix.png" alt="matrix julian"
-             style="grid-area: 1 / 3 / span 2 / span 3"/>
-
-<!--        <img src="~/assets/julian/julianface.png" alt="julian face"-->
-<!--             style="grid-area: 3 / 4 / 3 / 4"/>-->
-
-<!--        <img src="~/assets/home/watermelon.png" alt="scary watermelon (he is my friend)"-->
-<!--             style="grid-area: 3 / 3 / 3 / 3"/>-->
-
-        <img src="~/assets/julian/julianpants.png" alt="julian w pants"
-             style="grid-area: 2 / 1 / span 4 / 2"/>
-
-        <img src="~/assets/julian/julianfairy.png" alt="julian fairy"
-             style="grid-area: 1 / 1 / 2 / 2"/>
-
-        <img src="~/assets/julian/le epic face.png" alt="le epic face"
-             style="grid-area: 1 / 2 / 2 / 3"/>
-
-        <img src="~/assets/julian/juliancamera.png" alt="julian camera"
-             style="grid-area: 2 / 2 / 4 / 3"/>
+      <div id="intro" class="m-8">
+        <img style="grid-area: big" src="~/assets/julian/julianstanding.png" alt="standing">
+        <img style="grid-area: big" src="~/assets/julian/julianstanding.png" alt="standing">
+        <h1 class="m-4" style="grid-area: text">welcome to the julian awesome website!<br><br>
+          this is my digital oasis. i hope you enjoy! to get started, click on the little julian at the top!<br>
+          happy exploring!
+        </h1>
       </div>
 
-      <h2>this is still a relatively early version of the site so please check back in every so often for updates!</h2>
-      <h2>the desktop and mobile versions of the website are markedly different so please check em out!</h2>
+      <div id="monitor">
+        <div id="display">
+          <div class="items-center">
+            <h2>★ hello welcome to the blawgs ★</h2>
+            <img src="~/assets/borders/greenarrows.gif" alt="green line" class="my-4">
+          </div>
+
+          <ContentList path="/blogs" v-slot="{ list }">
+            <div v-for="blog in list" :key="blog._path">
+              <div class="items-start text-left">
+                <NuxtLink :to="blog._path">
+                  <h2 class="mb-0">► {{ blog.title }}</h2>
+                  <p>{{ blog.date }}</p>
+                  <h3>{{ blog.description }}</h3>
+                </NuxtLink>
+
+              </div>
+            </div>
+          </ContentList>
+        </div>
+      </div>
+
 
       <ChangeLog></ChangeLog>
-      <img id="swimmin" src="~/assets/home/swimmin.gif" alt="fish swimming #epic">
-      <img id="construction" src="~/assets/home/under-construction.gif" alt="under construction!">
 
+
+      <img id="star" src="~/assets/stars/star-eye.gif" alt="star eye lol">
     </div>
-    <div id="imgColumnRight" style="right: 0">
-      <img src="~/assets/home/flying-saucer.gif" alt="flying saucer"/>
-      <img src="~/assets/home/fish-graphic.gif" alt="fishies!"/>
-      <img src="~/assets/home/lightbulb.gif" alt="lightbulb guy"/>
-      <img src="~/assets/home/cactus.gif" alt="cactus"/>
-    </div>
+
+    <img src="~/assets/home/skelebones.gif" alt="skelebones">
 
   </div>
 
@@ -93,105 +100,122 @@ import {StarFall} from "#components";
 
 <style scoped>
 
-#logo {
-  padding-top: 40px;
-  padding-bottom: 20px;
-  will-change: filter;
-  transition: filter 300ms;
-  width: 50vw;
-  align-self: center;
+#monitor {
+  display: flex;
+  justify-content: center;
+
+  max-width: 50%;
+  max-height: 50%;
+
+  object-fit: contain;
+  position: relative;
+  aspect-ratio: 728 / 824;
+
+  background: url("~/assets/home/newmonitor.png") no-repeat center;
+  background-size: contain;
 }
 
-#logo:hover {
-  filter: drop-shadow(0 0 2em #89DD36);
+#display {
+  position: absolute;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  box-sizing: border-box;
+  background-color: rgba(12, 12, 12, 0.8);
+  text-align: center;
+  text-wrap: wrap;
+
+  left: 18.68%;
+  top: 9.22%;
+  width: 64.01%;
+  height: 43.93%;
 }
 
-#mobileContainer {
+#display * {
+  color: green;
+}
+
+#intro {
+  display: grid;
+  grid-template-columns: auto;
+  grid-template-rows: auto;
+  grid-template-areas:
+    "big text text"
+    "big img img2";
+  grid-auto-flow: row dense;
+}
+
+#intro > img {
+  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+
+  width: 100%;
+}
+
+#mainPanel {
+  position: relative;
+  max-width: 80vw;
+  width: 100%;
+  height: 100%;
+  margin-top: 3rem;
+
+  padding: 2rem;
+  transform: skew(-3deg);
+  box-shadow: 0 0 68px 11px rgba(0, 255, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.85);
+  border: 10px outset green;
+}
+
+#container {
+  width: 100%;
+  height: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  overflow-x: hidden;
+}
+
+#mobileContainer, #starBorder {
   display: none;
 }
 
-.overlay {
-  top: 0;
-  bottom: 0;
-  left: 0;
+.unskew {
+  transform: skew(-8deg);
+}
+
+#star {
+  position: absolute;
   right: 0;
-  display: grid;
-  grid-template-columns: auto auto auto;
-  grid-gap: 10px;
-  max-width: 100vw;
-  height: 100%;
-}
-
-#centerContent {
-  display: flex;
-  margin: 0;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-#imgColumnLeft, #imgColumnRight {
   top: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 15vw;
-  height: inherit;
+
+  transform: translate(50%, -50%) scale(1.5);
 }
 
-#imgColumnLeft, #imgColumnRight img {
-  object-fit: contain;
-  max-width: inherit;
-  height: auto;
+#back {
+  background-image: url('~/assets/stars/slowdark.gif')
 }
 
-p {
-  color: white;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 10px;
-}
-
-h2 {
-  font-size: 2em;
-}
-
-* {
-  font-size: 1.15em;
-  text-align: center;
-  padding: 10px;
-}
-
-#swimmin, #construction {
-  width: 25vw;
-}
-
-/* Small devices such as large phones (640px and up) */
 @media only screen and (max-width: 640px) {
-  #imgColumnLeft, #imgColumnRight {
-    display: none;
-  }
+  #mainPanel {
+    max-width: 90vw;
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
 
-  #logo {
-    display: none;
-  }
+    padding: 0.5rem;
+    transform: skew(0);
 
-  .overlay {
-    margin: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+
     display: flex;
     flex-direction: column;
-    align-content: center;
-  }
-
-  #mobileHeader {
-    display: flex;
-    margin: 0;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-    height: 20vh;
   }
 
   #mobileContainer {
@@ -202,11 +226,10 @@ h2 {
     will-change: filter;
     transition: filter 300ms;
     width: 80vw;
+    height: 15vh;
 
-    padding: 0 0 3vh 0;
     box-sizing: border-box;
     margin-top: 3vh;
-    height: 18vh;
   }
 
   #mobileContainer img {
@@ -214,53 +237,47 @@ h2 {
     height: 100%;
     width: auto;
     object-fit: contain;
+    padding: 0.5rem;
   }
 
-  h2 {
-    margin-top: 0;
+  #starBorder {
+    display: block;
+    border-image-source: url('~/assets/stars/starrotating.gif');
+    border-width:  0 0 1rem 0;
+    border-image-slice: 0 0 100% 0;
+    border-image-repeat: round;
+    width: 100vw;
+    margin: 1rem 0 1rem 0;
   }
 
-  #swimmin, #construction {
-    width: 75vw;
+  #intro {
+    grid-template-areas:
+    "big big big"
+    "big img img2"
+    "text text text";
   }
 
-  h2 {
-    font-size: 1.15em;
+  #monitor {
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
   }
 
+  #container {
+    padding: 1rem;
+  }
+
+  #logo, #star {
+    display: none;
+  }
+
+  #back {
+    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.85);
+  }
+
+  .unskew {
+    transform: skew(0deg);
+  }
 }
-
-/* Medium devices such as tablets (768px and up) */
-@media only screen and (min-width: 768px) {
-
-}
-
-/* Large devices such as laptops (1024px and up) */
-@media only screen and (min-width: 1024px) {
-
-}
-
-/* Largest devices such as desktops (1280px and up) */
-@media only screen and (min-width: 1280px) {
-
-}
-
-#julianPics {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 0.5fr);
-  //grid-auto-flow: row dense;
-  height: fit-content;
-  justify-items: center;
-  padding: 20px;
-  width: 100%;
-}
-
-#julianPics img {
-  max-width: 75%; /* Ensures assets fill their containers */
-  height: auto;
-
-  object-fit: contain;
-}
-
 </style>

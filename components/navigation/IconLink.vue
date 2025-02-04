@@ -8,16 +8,12 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div id="link">
-    <NuxtLink :to="props.to">
-      {{ props.name }}
-
-      <span id="icon">
-        <slot></slot>
-      </span>
-    </NuxtLink>
-
-  </div>
+  <NuxtLink id="link" :to="props.to" class="text-3xl" style="text-decoration: none;">
+    <div id="icon">
+      <slot></slot>
+    </div>
+    {{ props.name }}
+  </NuxtLink>
 
 </template>
 
@@ -25,33 +21,24 @@ const props = defineProps<{
 
 #link {
   position: relative;
-
   display: flex;
-  align-items: flex-end;
-  align-content: flex-end;
-  flex-wrap: nowrap;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
-  justify-content: space-evenly;
-  gap: 0.25em;
-
-  margin: 10px 0 10px 0;
+  justify-content: center;
 
   transition: transform 0.5s ease-out;
   transform-origin: top left;
 
+  max-height: 100%;
+
+  color: #e3b73c;
   text-shadow: #0c0c0c 1px 1px;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-  font-family: "Micro 5", monospace;
-}
-
 #icon {
-  display: inline-block;
-  max-height: 1em;
-  max-width: 1em;
+  max-height: 2em;
+  max-width: 2em;
   object-fit: scale-down;
 }
 
@@ -64,13 +51,6 @@ a {
 /*
   link transitions
  */
-a {
-  color: white;
-  position: relative;
-  text-decoration: none;
-  font-family: "Micro 5", monospace;
-  font-size: 25px;
-}
 
 a::before {
   content: '';
@@ -78,12 +58,12 @@ a::before {
   width: 100%;
   height: 4px;
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: #e3b73c;
   bottom: 0;
   left: 0;
   transform-origin: right;
   transform: scaleX(0);
-  transition: transform .3s ease-in-out;
+  transition: transform .2s ease-in-out;
 }
 
 a:hover::before, a:active::before {

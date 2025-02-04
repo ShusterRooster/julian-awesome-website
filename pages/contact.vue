@@ -1,4 +1,31 @@
 <script setup lang="ts">
+useSeoMeta({
+  title: 'contact',
+  description: 'contact julian (the GOAT) here!',
+  ogTitle: 'contact',
+  ogDescription: 'contact julian (the GOAT) here!',
+  ogImage: '[og:image]',
+  ogUrl: 'julianshuster.com/contact',
+  twitterTitle: '[twitter:title]',
+  twitterDescription: '[twitter:description]',
+  twitterImage: '[twitter:image]',
+  twitterCard: 'summary'
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/gif',
+      href: '/icons/dancingsmiley.gif'
+    }
+  ]
+})
+
+
 const sitting = ref<HTMLImageElement>()
 const waving = ref<HTMLImageElement>()
 const interact = ref<HTMLDivElement>()
@@ -9,17 +36,17 @@ function waveJulian() {
     sitting.value.style.display = 'none'
     waving.value.style.display = 'block'
 
-    interact.value.style.opacity = 0
+    interact.value!.style.opacity = '0'
 
-    hello.value.style.display = 'block'
-    hello.value.style.opacity = 1
+    hello.value!.style.display = 'block'
+    hello.value!.style.opacity = '1'
 
     setTimeout(() => {
-      waving.value.style.display = 'none'
-      sitting.value.style.display = 'block'
+      waving.value!.style.display = 'none'
+      sitting.value!.style.display = 'block'
 
-      interact.value.style.opacity = 1
-      hello.value.style.opacity = 0
+      interact.value!.style.opacity = '1'
+      hello.value!.style.opacity = '0'
     }, 2250)
   }
 }
@@ -29,8 +56,8 @@ function waveJulian() {
 
 <template>
   <title>contact</title>
-<!--  <link rel="icon" href="/animated/dancingsmiley.gif" type="image/gif">-->
-  <link rel="shortcut icon" href="/smiley.png" type="image/png">
+<!--&lt;!&ndash;  <link rel="icon" href="/animated/dancingsmiley.gif" type="image/gif">&ndash;&gt;-->
+<!--  <link rel="shortcut icon" href="/smiley.png" type="image/png">-->
 
   <div class="background" id="background"></div>
 
@@ -43,7 +70,7 @@ function waveJulian() {
         <img src="../assets/julian/point.gif" alt="pointing julian">
       </div>
 
-      <div class="half" style="gap: 2em">
+      <div class="half" style="gap: 2rem">
         <h1 id="howTo">here's how to contact me:</h1>
 
         <div id="phone">
@@ -80,7 +107,7 @@ function waveJulian() {
               <img id="cat" src="../assets/contact/email/catlickenvelope.gif"
                    alt="cat licking envelope">
 
-              <h2 style="font-size: 2em; margin-bottom: 0.25em" class="color">click here!</h2>
+              <h2 style="font-size: 2rem; margin-bottom: 0.25rem" class="color">click here!</h2>
             </NuxtLink>
 
             <h2 id="address">julianawesomewebsite@proton.me</h2>
@@ -140,7 +167,7 @@ function waveJulian() {
   max-width: 65%;
   padding: 25px;
   text-shadow: rgba(12, 12, 12, 0.4) 2px 2px;
-  gap: 2em;
+  gap: 2rem;
 }
 
 .column {
@@ -178,7 +205,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1em 3em 1em 3em;
+  padding: 1rem 3rem 1rem 3rem;
   box-sizing: border-box;
   background-color: rgba(12, 12, 12, 0.8);
   text-align: center;
@@ -193,7 +220,7 @@ img {
 #email {
   display: flex;
   align-content: center;
-  gap: 2em;
+  gap: 2rem;
   max-width: 100%;
   max-height: 100%;
   padding: 5%;
@@ -218,7 +245,7 @@ img {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-bottom: 2em
+  padding-bottom: 2rem
 }
 
 #cat {
@@ -249,7 +276,7 @@ img {
 #hello {
   position: absolute;
   opacity: 0;
-  font-size: 8em;
+  font-size: 8rem;
   left: 15%;
   bottom: 20%;
 
@@ -293,7 +320,7 @@ h1 {
 }
 
 h2 {
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 @media only screen and (max-width: 1920px) {
@@ -322,7 +349,7 @@ h2 {
   }
 
   #address {
-    font-size: 0.75em;
+    font-size: 0.75rem;
   }
 
   #cat {
@@ -356,25 +383,25 @@ h2 {
   }
 
   #sittingJulian {
-    margin-top: 3em;
+    margin-top: 3rem;
   }
 
   #interact {
-    margin: 0 0 0 1em;
+    margin: 0 0 0 1rem;
   }
 
   #hello {
-    font-size: 2.5em;
+    font-size: 2.5rem;
     left: 10%;
     margin: 0;
   }
 
   h1 {
-    font-size: 2em;
+    font-size: 2rem;
   }
 
   h2 {
-    font-size: 1em;
+    font-size: 1rem;
   }
 
   .notMobile {

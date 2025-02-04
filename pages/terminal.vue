@@ -1,7 +1,32 @@
 <script setup lang="ts">
 import Terminal from "~/components/terminal/Terminal";
-
 const module = useCssModule("terminal")
+
+useSeoMeta({
+  title: 'terminal',
+  description: 'awesome julian terminal, still WIP! has some fun commands :)',
+  ogTitle: 'terminal',
+  ogDescription: 'awesome julian terminal, still WIP! has some fun commands :)',
+  ogImage: '[og:image]',
+  ogUrl: 'julianshuster.com/terminal',
+  twitterTitle: '[twitter:title]',
+  twitterDescription: '[twitter:description]',
+  twitterImage: '[twitter:image]',
+  twitterCard: 'summary'
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/gif',
+      href: '/icons/terminal.gif'
+    }
+  ]
+})
 
 
 onMounted(async () => {
@@ -26,8 +51,8 @@ onMounted(async () => {
 
 .text {
   white-space: pre;
-  margin-top: 0.1em;
-  margin-bottom: 0.1em;
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
   font-family: "JetBrains Mono", monospace;
   font-size: 16px;
   text-wrap: wrap;
@@ -61,7 +86,7 @@ onMounted(async () => {
   align-items: center;
   flex-wrap: nowrap;
   width: 75%;
-  margin: 0.5em 0 0.5em 0;
+  margin: 0.5rem 0 0.5rem 0;
 }
 
 .textArea {
@@ -77,7 +102,11 @@ onMounted(async () => {
 
 @media only screen and (max-width: 640px) {
   .text {
-    font-size: 0.75em;
+    font-size: 0.75rem;
+  }
+
+  #terminal {
+    margin-bottom: 0;
   }
 }
 
@@ -98,5 +127,6 @@ onMounted(async () => {
   padding: 20px;
   overflow: scroll;
   overflow-x: hidden;
+  margin-bottom: 10vh;
 }
 </style>

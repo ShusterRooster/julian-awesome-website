@@ -30,17 +30,6 @@ const terminal =
     "\\__/\\__/_/ /_/_/_/_/_//_/\\_,_/_/  \n"
 
 const mobileAscii = julian + terminal
-
-const display = window.innerWidth > 640 ? ascii : mobileAscii
-
-const greeting =
-    `hello and welcome to \n
-${display}
-version 1.2.0 alpha
-type 'help' for available commands!
-
-you can also type <command> help for extra info on a command!
-have fun!`
 const headerText = "user@julianweb >"
 
 export default class Terminal {
@@ -62,13 +51,26 @@ export default class Terminal {
     }
 
     start() {
+        const display = window.innerWidth > 640 ? ascii : mobileAscii
+
+
+        const greeting =
+            `hello and welcome to \n
+${display}
+version 1.2.0 alpha
+type 'help' for available commands!
+
+you can also type <command> help for extra info on a command!
+have fun!`
+
         this.sendText(greeting)
         this.makeLine()
+
+        const textBox = this.div.lastChild!.lastChild! as HTMLInputElement
 
         this.div.onkeydown = (e: KeyboardEvent) => {
             if(e.key == "ArrowUp" || e.key == "ArrowDown") {
                 e.preventDefault()
-                const textBox = this.div.lastChild!.lastChild! as HTMLInputElement
 
                 if(e.key == "ArrowUp") {
                     if(this.history[this.index - 1] !== undefined) {
@@ -91,13 +93,10 @@ export default class Terminal {
         }
 
         this.div.onmousedown = (e: MouseEvent) => {
-            const textBox = this.div.lastChild!.lastChild!
-
-            if(textBox instanceof HTMLInputElement) {
+            if(document.activeElement != textBox) {
                 setTimeout(() => {
                     textBox.focus({preventScroll: false})
                 }, 0)
-
             }
         }
     }
@@ -255,4 +254,4 @@ const debug = new DebugCommand({
 })
 
 //no snake rn, the text spacing is broken rn :(
-Terminal.commands.push(fart, help, navTo, clear, scripts)
+Terminal.commands.push(fart, help, navTo, clear, scripts, snake)

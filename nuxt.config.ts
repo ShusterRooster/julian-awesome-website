@@ -1,14 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 
 export default defineNuxtConfig({
-    modules: ['@nuxtjs/google-fonts', '@vueuse/nuxt', "@nuxt/eslint"],
+    modules: [
+        '@nuxtjs/google-fonts',
+        '@vueuse/nuxt',
+        "@nuxtjs/tailwindcss",
+        '@nuxt/content',
+        '@nuxtjs/seo'
+    ],
     devtools: {enabled: true},
     pages: true,
-    ssr: false,
+    css: ['~/assets/css/tailwind.css'],
 
-    nitro: {
-        static: true,
-    },
+    // tailwindcss: {
+    //     cssPath: '~/assets/css/tailwind.css',
+    // },
 
     googleFonts: {
         families: {

@@ -8,7 +8,7 @@ onMounted(async () => {
 
   const box = document.getElementById("box") as HTMLDivElement
   const div = box.clientWidth / 3;
-  const cutoff = 5
+  const cutoff = 1.5
 
   function transforms(x: number, y: number, el: HTMLDivElement) {
     const bounds = el.getBoundingClientRect();
@@ -66,43 +66,21 @@ onMounted(async () => {
 
   <div id="box">
     <div id="header">
-      <span><img src="~/assets/home/stars/star-eye.gif" alt="green star eye"></span>
-      <h1>changelog!</h1>
+      <span><img src="~/assets/misc/cyber_colors.gif" alt="cyber bear"></span>
+      <h2>changelog!</h2>
       <span><img src="~/assets/home/wizz.gif" alt="epic wizard"></span>
     </div>
     <img src="~/assets/borders/starsilverborder.gif" style="margin-bottom: 15px" alt="#epic star border">
     <div id="entries">
+      <ContentList path="/changelog" v-slot="{ list }">
+        <div v-for="update in list.slice().reverse()" :key="update._path">
+          <ChangeLogEntry :title="update.title!" :date="update.date">
+            <ContentRenderer :value="update">
+            </ContentRenderer>
 
-      <ChangeLogEntry title="happy birthday update!!! 🎉" date="september 2, 2024">
-        hello julian awesome website fans!! today is my 20th birthday!!!!<br>
-
-        later today, I will be hosting a birthday party in new paltz. i printed and distributed ~40 flyers so hopefully i meet some amazing new people and have a great time :)<br><br>
-        in preparation for this event, I have added a <NuxtLink to="/contact">contact</NuxtLink> page so that people can scan my amazing cyborg chip and be able to contact me.<br><br>
-        hope you enjoy!
-
-        -julian
-      </ChangeLogEntry>
-
-      <ChangeLogEntry title="major update!" date="july 30, 2024">
-        hello julian awesome website fans! I come to you with news of a massive update I have been working on!<br><br>
-
-        I have now made the existing pages friendly for mobile and have added a custom julian navigation menu for mobile
-        devices!<br>
-
-        unfortunately, the layout for tablets has not yet been optimized so please don't look at this website on there
-        LOL<br><br>
-
-        in this update I have also added the
-        <NuxtLink to="/terminal">terminal</NuxtLink>
-        where you can type in commands and some other Epic stuff!<br><br>
-
-        thanks for reading and stay tuned for future awesome updates!!! :)
-      </ChangeLogEntry>
-
-      <ChangeLogEntry title="changelog added" date="july 24, 2024">
-        fuck yeah!! welcome to the changelog! I will be putting website updates here as
-        I add them so check back in every so often!
-      </ChangeLogEntry>
+          </ChangeLogEntry>
+        </div>
+      </ContentList>
     </div>
   </div>
 
@@ -110,7 +88,6 @@ onMounted(async () => {
 
 <style scoped>
 h1 {
-  font-size: 3em;
   margin: 0;
 }
 
@@ -143,7 +120,7 @@ a:hover {
   flex-direction: column;
 
   border-radius: 25px;
-  background-image: url("~/assets/home/stars/nightstars.gif");
+  background-image: url("~/assets/stars/nightstars.gif");
   background-position: center;
   background-size: cover;
 
@@ -163,11 +140,6 @@ img {
   #header img {
     height: 1em;
     width: auto;
-  }
-
-  h1 {
-    font-size: 1.5em;
-    margin: 0;
   }
 }
 
