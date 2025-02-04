@@ -12,10 +12,6 @@ defineProps<{
       <img src="~/assets/home/fishie.gif" alt="home icon"/>
     </IconLink>
 
-    <IconLink name="dating" to="/dating">
-      <img src="~/assets/dating/earthhearts.gif" alt="dating icon"/>
-    </IconLink>
-
     <IconLink name="terminal" to="/terminal">
       <img src="~/assets/misc/computer_surfing.gif" alt="terminal icon"/>
     </IconLink>

@@ -1,15 +1,12 @@
 # hello welcome to julian awesome website repo!
 
-### **_WELCOME TO THE SECRET AWESOME DEV BRANCH_**
-this is where all the cool stuff happens.
+this is my fun space on the web! social media websites have robbed us of 
+the beauty, character, and charm of the old internet. the internet used to be a 
+trove of amazing, small, and unique websites, now it has been taken over entirely by trackers, ads, and 
+general capitalist profit motive. it is time we take back the internet!
 
+_a better world is possible_
 
-### general to-dos:
-* make images smaller!! faster loading times!!!
-* get animated icons working and have fallbacks
-* add terminal commands (no one understands it anyways lol)
-* change or make phone thing stable
-* 
 ```
                \
                 \\
