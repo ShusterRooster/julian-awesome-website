@@ -5,10 +5,8 @@ this is where all the cool stuff happens.
 
 
 ### general to-dos:
-* finish archive
-* make archive mobile
 * fix and cleanup about
-* figure out julian nav for mobile
+* fix snake movement delay
 * get snake working again
 * finish blog functionality
 ```

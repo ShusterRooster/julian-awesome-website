@@ -1,5 +1,31 @@
 <script setup lang="ts">
 import {StarFall} from "#components";
+
+useSeoMeta({
+  title: 'home archive',
+  description: 'OG julian awesome website experience!!',
+  ogTitle: 'home archive',
+  ogDescription: 'OG julian awesome website experience!!',
+  ogImage: '[og:image]',
+  ogUrl: 'julianshuster.com',
+  twitterTitle: '[twitter:title]',
+  twitterDescription: '[twitter:description]',
+  twitterImage: '[twitter:image]',
+  twitterCard: 'summary'
+})
+
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/icons/dinosaur.png'
+    }
+  ]
+})
 </script>
 
 <template>
@@ -14,23 +40,6 @@ import {StarFall} from "#components";
       <img src="~/assets/home/apple.gif" alt="apple"/>
       <img src="~/assets/home/sharkie.gif" alt="shark!"/>
     </div>
-
-    <!--    <div id="mobileHeader">-->
-    <!--      <Marquee class="marquee" height="3vh">-->
-    <!--        <img src="~/assets/home/butterflies.gif" alt="butterflies"/>-->
-    <!--        <img src="~/assets/home/gnome-toilet.gif" alt="gnome toilet"/>-->
-    <!--        <img src="~/assets/home/apple.gif" alt="apple"/>-->
-    <!--        <img src="~/assets/home/sharkie.gif" alt="shark!"/>-->
-    <!--      </Marquee>-->
-
-
-    <!--      <Marquee class="marquee" height="3vh">-->
-    <!--        <img src="~/assets/home/flying-saucer.gif" alt="flying saucer"/>-->
-    <!--        <img src="~/assets/home/fish-graphic.gif" alt="fishies!"/>-->
-    <!--        <img src="~/assets/home/lightbulb.gif" alt="lightbulb guy"/>-->
-    <!--        <img src="~/assets/home/cactus.gif" alt="cactus"/>-->
-    <!--      </Marquee>-->
-    <!--    </div>-->
 
     <div id="centerContent">
       <div id="mobileContainer">

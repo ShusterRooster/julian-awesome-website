@@ -52,26 +52,48 @@ useHead({
       <div id="info">
         <div id="infoText">
           <h1>welcome to the archive!</h1>
-          <img src="~/assets/archive/folderopen.gif" alt="folder">
+          <div id="mobileFolder"></div>
+
+          <img class="desktop" src="~/assets/archive/folderopen.gif" alt="folder">
           <h2>this is just a place to hold old web page projects to make room for newer and cooler projects!</h2>
-          <img src="~/assets/archive/wombat.gif" alt="wombat">
+          <img class="desktop" src="~/assets/archive/wombat.gif" alt="wombat">
           <h2>have fun browsing!</h2>
+
         </div>
 
-
-        <img src="~/assets/archive/aquarium.gif" alt="fishie tank" style="position: absolute; bottom: 0; width: 100%">
+        <img id="fishie" src="~/assets/archive/fish.gif" alt="fishie">
+        <img class="desktop" src="~/assets/archive/aquarium.gif" alt="fishie tank" style="position: absolute; bottom: 0; width: 100%">
       </div>
 
       <div id="items">
-<!--        <ArchiveItem title="dating" description="hello this was my dating site lol">-->
-<!--          <img src="~/assets/dating/floating_heart.gif" alt="floating heart">-->
-<!--        </ArchiveItem>-->
+        <ArchiveItem title="dating" path="/archive/dating" description="this was my dating page, i am now in a wonderful relationship!">
+          <template #desktop>
+            <img src="~/assets/archive/screengrabs/datingdesktop.gif" alt="dating desktop"/>
+          </template>
 
-        <ArchiveItem title="dating" description="this was my dating page :P">
-          <img class="desktop" src="~/assets/archive/screengrabs/datingdesktop.gif" alt="dating desktop"/>
+          <template #mobile>
+            <img src="~/assets/archive/screengrabs/datingmobile.gif" alt="dating mobile"/>
+          </template>
 
+          <template #background>
+            <img src="~/assets/dating/heartbg.gif" alt="dating background"/>
+          </template>
         </ArchiveItem>
+<!--        ../-->
 
+        <ArchiveItem title="old home" path="/archive/home" description="the OG julian awesome website home page!">
+          <template #desktop>
+            <img src="~/assets/archive/screengrabs/homedesktop.gif" alt="home desktop"/>
+          </template>
+
+          <template #mobile>
+            <img src="~/assets/archive/screengrabs/homemobile.gif" alt="home mobile"/>
+          </template>
+
+          <template #background>
+            <img src="~/assets/stars/slowdark.gif" alt="home background"/>
+          </template>
+        </ArchiveItem>
       </div>
 
 
@@ -136,15 +158,19 @@ useHead({
 
 #items {
   display: flex;
-  padding: 1rem;
+  flex-direction: column;
+  padding: 3rem;
+  gap: 2rem;
 
   max-height: 100%;
   max-width: 100%;
 
   height: 100%;
   width: 100%;
+  grid-area: items;
 
   box-sizing: border-box;
+  overflow-y: scroll;
 }
 
 #topBar {
@@ -178,6 +204,77 @@ useHead({
   margin-left: auto;
   margin-right: 0.75rem;
   box-sizing: border-box;
+}
+
+#mobileFolder, #fishie {
+  display: none;
+}
+
+@media only screen and (max-width: 640px) {
+  #explorer {
+    display: grid;
+    max-width: 90vw;
+    max-height: 65vh;
+
+    align-self: flex-end;
+    margin-bottom: 3vh;
+
+    grid-template-areas:
+      "topbar topbar"
+      "items items";
+
+    grid-template-rows: 8% auto;
+  }
+
+  #buttons {
+    margin-right: 0;
+    grid-gap: 0.75rem;
+  }
+
+  #info {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    max-width: 100vw;
+    max-height: 30vh;
+
+    width: 100%;
+    height: 100%;
+
+    box-shadow: 0 20px 40px 20px #a7daf6;
+  }
+
+  #mobileFolder {
+    display: block;
+    height: 4rem;
+    width: 100%;
+
+    border-style: solid;
+    border-width: 4rem 0 0 0; /* adjust the width to match your image */
+    border-image-source: url('~/assets/archive/folderopen.gif');
+    border-image-slice: 100% 0 0 0; /* adjust the slice to match your image */
+    border-image-repeat: repeat;
+  }
+
+  #fishie {
+    display: block;
+    margin: auto 0 1rem 0;
+    align-self: flex-end;
+  }
+
+  #infoText {
+    padding: 1rem;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  #items {
+    align-items: center;
+    padding: 1rem;
+  }
 }
 
 .button {

@@ -11,8 +11,8 @@ const props = defineProps<{
 <template>
 
   <div id="text">
-    <h3>✰ {{ props.title }}</h3>
-    <p><small>{{ props.date }}</small></p>
+    <h1>✰ {{ props.title }}</h1>
+    <h4>{{ props.date }}</h4>
     <div id="indent">
       <slot/>
     </div>
@@ -21,25 +21,16 @@ const props = defineProps<{
 </template>
 
 <style scoped>
-h1, p {
-  margin: 0
-}
-
-h2 {
-  margin-top: 0;
-}
-
 #indent {
   padding-left: 18px;
+  margin-top: 0.5rem;
   border-left: 8px solid white;
 }
 
 #text {
-  margin: 0;
   text-align: left;
   max-width: 75%;
   padding-left: 18px;
-  margin-bottom: 2em;
 }
 
 @media only screen and (max-width: 640px) {

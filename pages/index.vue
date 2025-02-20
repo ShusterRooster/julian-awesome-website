@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import NavLinks from "~/components/navigation/NavLinks.vue";
 
 useSeoMeta({
   title: 'julian AWESOME home',
@@ -27,6 +26,26 @@ useHead({
   ]
 })
 
+const {data: page} = await useAsyncData('blogs', () => {
+  return queryCollection('blogs').all()
+})
+
+
+const explosion = ref()
+const explosionImg = ref()
+
+function explode() {
+  explosion.value.style.backgroundImage = `url("${explosionImg.value.src}")`
+  console.log(explosion.value.style.backgroundImage)
+
+  // explosion.value.style.display = 'block'
+
+  setTimeout(() => {
+    // explosion.value.style.display = 'none'
+    explosion.value.style.backgroundImage = ''
+  }, 900)
+}
+
 </script>
 
 <template>
@@ -51,40 +70,73 @@ useHead({
       <div class="unskew">
         <img src="~/assets/home/welcome2.gif" alt="welcome">
 
-        <img src="~/assets/home/fishspinning.gif" alt="fishie!" style="position: absolute; right: 10%; top: 20%;">
+        <img src="~/assets/home/fishspinning.gif" alt="fishie!" class="hidden sm:block" style="position: absolute; right: 10%; top: 20%;">
       </div>
 
-      <div id="intro" class="m-8">
-        <img style="grid-area: big" src="~/assets/julian/julianstanding.png" alt="standing">
-        <img style="grid-area: big" src="~/assets/julian/julianstanding.png" alt="standing">
-        <h1 class="m-4" style="grid-area: text">welcome to the julian awesome website!<br><br>
-          this is my digital oasis. i hope you enjoy! to get started, click on the little julian at the top!<br>
-          happy exploring!
-        </h1>
+      <div id="intro" class="sm:my-8">
+        <img style="grid-area: big" class="hidden sm:block" src="~/assets/julian/julianstanding.png" alt="standing">
+
+        <div id="introText" style="grid-area: text">
+          <h1>welcome to the julian awesome website!<br>
+            this is my love letter to the internet and my digital oasis. i hope you enjoy!
+          </h1><br>
+
+<!--          for mobile-->
+          <h1 class="sm:hidden">click on the little leaning julian at the bottom of the screen and start exploring! you can click anywhere on the screen to close the navbar!</h1>
+<!--          for desktop-->
+          <h1 class="hidden sm:block">wow! you're one of those rare desktop users! this version of the website is much more advanced!! take a ride on the starry navigation system and start exploring! have fun :)</h1>
+        </div>
+
+
+        <img src="~/assets/home/world_welcome.gif" alt="world welcome" style="grid-area: img"/>
+        <img src="~/assets/borders/alienborder.gif" alt="aliens dancing" style="grid-area: img2"/>
+
+        <div style="position: relative" @click="explode">
+          <img src="~/assets/julian/ominous.png" alt="big head ahh" style="grid-area: img3;" class="w-sm sm:max-w-auto"/>
+          <div ref="explosion" id="explosion"/>
+          <img src="~/assets/home/explosion.gif" ref="explosionImg" alt="hidden...." style="display: none">
+        </div>
       </div>
 
-      <div id="monitor">
-        <div id="display">
-          <div class="items-center">
-            <h2>★ hello welcome to the blawgs ★</h2>
-            <img src="~/assets/borders/greenarrows.gif" alt="green line" class="my-4">
-          </div>
+      <div id="stuff">
+        <div id="monitor">
+          <div id="display">
 
-          <ContentList path="/blogs" v-slot="{ list }">
-            <div v-for="blog in list" :key="blog._path">
-              <div class="items-start text-left">
-                <NuxtLink :to="blog._path">
+            <div class="items-center">
+              <h2>★ hello welcome to the blawgs ★</h2>
+              <img src="~/assets/borders/greenarrows.gif" alt="green line" class="my-4">
+            </div>
+
+            <div v-for="blog in page.slice().reverse()" :key="blog.path">
+              <div class="items-start text-left mb-4">
+                <NuxtLink :to="blog.path">
                   <h2 class="mb-0">► {{ blog.title }}</h2>
                   <p>{{ blog.date }}</p>
                   <h3>{{ blog.description }}</h3>
                 </NuxtLink>
-
               </div>
             </div>
-          </ContentList>
-        </div>
-      </div>
+          </div>
 
+          <img id="exclamation" src="~/assets/home/exclamation.gif" alt="exclamation"/>
+        </div>
+
+        <div id="explain">
+          <h1>social media websites have robbed us of the beauty, character, and charm of the old internet.
+            the internet used to be a trove of amazing, small, and unique websites, now it has been taken over
+            entirely by trackers, ads, and general capitalist profit motive.<br><br>
+
+            <strong class="font-bold text-7xl">it's time we take back the web!!!</strong><br><br>
+
+            corporations will not limit our expression any longer.<br>
+            if you want to learn how to build a website, please check out <NuxtLink to="https://neocities.org/">neocities.org</NuxtLink>
+            and <NuxtLink to="/contact">contact</NuxtLink>  me if you have any questions!<br><br>
+
+            <NuxtLink to="https://github.com/ShusterRooster/julian-awesome-website">>>> check out my source code!!!</NuxtLink>
+          </h1>
+        </div>
+
+      </div>
 
       <ChangeLog></ChangeLog>
 
@@ -104,8 +156,8 @@ useHead({
   display: flex;
   justify-content: center;
 
-  max-width: 50%;
-  max-height: 50%;
+  max-width: 100%;
+  max-height: 100%;
 
   object-fit: contain;
   position: relative;
@@ -136,22 +188,67 @@ useHead({
   color: green;
 }
 
-#intro {
-  display: grid;
-  grid-template-columns: auto;
-  grid-template-rows: auto;
-  grid-template-areas:
-    "big text text"
-    "big img img2";
-  grid-auto-flow: row dense;
+#exclamation {
+  position: absolute;
+  top: 5%;
+  right: 12%;
+  transform: scale(2);
 }
 
-#intro > img {
-  object-fit: cover;
-  max-width: 100%;
-  max-height: 100%;
+#stuff {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 
   width: 100%;
+  max-height: 100%;
+  margin-bottom: 4rem;
+  align-items: center;
+}
+
+#explain {
+  padding: 0 4rem 0 4rem;
+}
+
+#explain a {
+  color: greenyellow;
+  text-decoration: underline;
+}
+
+#intro {
+  display: grid;
+  grid-template-areas:
+    "big text text text"
+    "big img img2 img3";
+  grid-auto-flow: row dense;
+
+  grid-template-columns: 1fr repeat(3, 1fr);
+  grid-template-rows: 2fr;
+
+  place-items: center;
+
+  max-height: 60vh;
+}
+
+#intro img {
+  object-fit: scale-down;
+
+  overflow: hidden;
+  min-width: 0;
+  min-height: 0;
+
+  max-width: 100%;
+}
+
+#explosion {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  transform: scale(2);
+  //background: url("~/assets/home/explosion.gif") no-repeat;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 #mainPanel {
@@ -196,7 +293,9 @@ useHead({
 }
 
 #back {
-  background-image: url('~/assets/stars/slowdark.gif')
+  background-image: url('~/assets/stars/slowdark.gif');
+
+  box-shadow: inset 20px 0 40px #265c08, /* right */ inset -20px 0 40px #075007; /* left */
 }
 
 @media only screen and (max-width: 640px) {
@@ -206,7 +305,7 @@ useHead({
     height: 100%;
     margin-top: 0;
 
-    padding: 0.5rem;
+    padding: 0.25rem;
     transform: skew(0);
 
     background-color: transparent;
@@ -243,7 +342,7 @@ useHead({
   #starBorder {
     display: block;
     border-image-source: url('~/assets/stars/starrotating.gif');
-    border-width:  0 0 1rem 0;
+    border-width: 0 0 1rem 0;
     border-image-slice: 0 0 100% 0;
     border-image-repeat: round;
     width: 100vw;
@@ -252,9 +351,29 @@ useHead({
 
   #intro {
     grid-template-areas:
-    "big big big"
-    "big img img2"
-    "text text text";
+    "text img"
+    "text img2"
+    "img3 img3";
+
+    grid-auto-flow: row;
+
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: auto auto auto;
+
+    margin: 1rem 0 4rem;
+
+    max-height: 100%;
+  }
+
+  #exclamation {
+    top: 1%;
+    right: 12%;
+    transform: scale(1.5);
+  }
+
+  #introText {
+    padding: 2rem 0 0 2rem;
+    align-self: flex-start;
   }
 
   #monitor {
@@ -262,6 +381,16 @@ useHead({
     height: 100%;
     max-width: 100%;
     max-height: 100%;
+  }
+
+  #stuff {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    margin-bottom: 4rem;
+  }
+
+  #explain {
+    padding: 1rem 1rem 0 1rem;
   }
 
   #container {
@@ -273,7 +402,8 @@ useHead({
   }
 
   #back {
-    box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.85);
+    box-shadow: inset 20px 0 40px #265c08, /* right */ inset -20px 0 40px #075007, /* left */ inset 0 0 0 2000px rgba(0, 0, 0, 0.85);
+
   }
 
   .unskew {

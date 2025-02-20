@@ -8,44 +8,50 @@ const props = defineProps<{
 </script>
 
 <template>
-  <NuxtLink id="link" :to="props.to" class="text-3xl" style="text-decoration: none;">
-    <div id="icon">
+  <NuxtLink class="link" style="text-decoration: none;" :to="props.to">
       <slot></slot>
+    <div id="text">
+      {{ props.name }}
     </div>
-    {{ props.name }}
   </NuxtLink>
 
 </template>
 
 <style scoped>
 
-#link {
+.link {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+
+  grid-auto-columns: min-content;
+  grid-auto-rows: auto min-content;
   text-align: center;
-  justify-content: center;
+  //justify-items: center;
+
+  //align-content: space-between;
+
+  width: 100%;
+  height: 100%;
 
   transition: transform 0.5s ease-out;
   transform-origin: top left;
+}
 
-  max-height: 100%;
-
+#text {
+  @apply text-3xl;
+  align-self: end;
   color: #e3b73c;
   text-shadow: #0c0c0c 1px 1px;
 }
 
-#icon {
-  max-height: 2em;
-  max-width: 2em;
-  object-fit: scale-down;
-}
+:slotted(img) {
+  height: 100%;
+  width: 100%;
 
-#icon > * {
+  object-fit: contain;
   margin: 0;
-  max-width: inherit;
-  max-height: inherit;
+
+  align-self: center;
 }
 
 /*

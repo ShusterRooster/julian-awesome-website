@@ -15,6 +15,10 @@
         @apply text-3xl;
     }
 
+    h4 {
+        @apply text-2xl;
+    }
+
     p {
         @apply text-xl
     }

@@ -2,6 +2,11 @@
 
 import ChangeLogEntry from "~/components/ChangeLogEntry.vue";
 
+const {data: page} = await useAsyncData('changelogs', () => {
+  return queryCollection('changelogs').all()
+})
+
+
 onMounted(async () => {
   // Wait for the next DOM update cycle
   await nextTick()
@@ -48,6 +53,7 @@ onMounted(async () => {
       }
     });
   }
+
   if (!window.matchMedia("(pointer: coarse)").matches) {
     window.onmousemove = (e: MouseEvent) => {
       setTransform(e)
@@ -67,30 +73,25 @@ onMounted(async () => {
   <div id="box">
     <div id="header">
       <span><img src="~/assets/misc/cyber_colors.gif" alt="cyber bear"></span>
-      <h2>changelog!</h2>
+      <h1>changelog!</h1>
       <span><img src="~/assets/home/wizz.gif" alt="epic wizard"></span>
     </div>
-    <img src="~/assets/borders/starsilverborder.gif" style="margin-bottom: 15px" alt="#epic star border">
+    <img src="~/assets/borders/starsilverborder.gif" alt="#epic star border">
     <div id="entries">
-      <ContentList path="/changelog" v-slot="{ list }">
-        <div v-for="update in list.slice().reverse()" :key="update._path">
-          <ChangeLogEntry :title="update.title!" :date="update.date">
-            <ContentRenderer :value="update">
-            </ContentRenderer>
 
-          </ChangeLogEntry>
-        </div>
-      </ContentList>
+      <div v-for="update in page.slice().reverse()" :key="update.path">
+        <ChangeLogEntry :title="update.title!" :date="update.date!">
+          <ContentRenderer :value="update" class="blog">
+          </ContentRenderer>
+
+        </ChangeLogEntry>
+      </div>
     </div>
   </div>
 
 </template>
 
 <style scoped>
-h1 {
-  margin: 0;
-}
-
 a {
   transition: color 0.3s;
 }
@@ -102,6 +103,10 @@ a:hover {
 #entries {
   max-height: 400px;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1rem;
 }
 
 #header {
@@ -111,7 +116,7 @@ a:hover {
 }
 
 #header img {
-  height: 3em;
+  height: 3rem;
   width: auto;
 }
 
@@ -138,8 +143,12 @@ img {
 /* Small devices such as large phones (640px and up) */
 @media only screen and (max-width: 640px) {
   #header img {
-    height: 1em;
+    height: 1rem;
     width: auto;
+  }
+
+  #entries {
+    max-height: 60vh;
   }
 }
 

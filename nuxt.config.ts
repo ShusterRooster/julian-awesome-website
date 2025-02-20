@@ -5,16 +5,12 @@ export default defineNuxtConfig({
         '@nuxtjs/google-fonts',
         '@vueuse/nuxt',
         "@nuxtjs/tailwindcss",
-        '@nuxt/content',
-        '@nuxtjs/seo'
+        '@nuxtjs/seo',
+        '@nuxt/content'
     ],
     devtools: {enabled: true},
     pages: true,
     css: ['~/assets/css/tailwind.css'],
-
-    // tailwindcss: {
-    //     cssPath: '~/assets/css/tailwind.css',
-    // },
 
     googleFonts: {
         families: {
