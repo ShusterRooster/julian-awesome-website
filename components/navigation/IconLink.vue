@@ -23,12 +23,12 @@ const props = defineProps<{
   position: relative;
   display: grid;
 
-  grid-auto-columns: min-content;
-  grid-auto-rows: auto min-content;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 3fr 1fr;
   text-align: center;
-  //justify-items: center;
+  place-items: center;
 
-  //align-content: space-between;
+  row-gap: 0.5rem;
 
   width: 100%;
   height: 100%;
@@ -38,20 +38,22 @@ const props = defineProps<{
 }
 
 #text {
-  @apply text-3xl;
+  font-size: 2rem;
+  line-height: 1;
   align-self: end;
   color: #e3b73c;
   text-shadow: #0c0c0c 1px 1px;
 }
 
 :slotted(img) {
+  max-height: 100%;
   height: 100%;
-  width: 100%;
 
-  object-fit: contain;
+  object-fit: scale-down;
   margin: 0;
 
   align-self: center;
+  min-height: 0;
 }
 
 /*

@@ -85,6 +85,8 @@ function explode() {
           <h1 class="sm:hidden">click on the little leaning julian at the bottom of the screen and start exploring! you can click anywhere on the screen to close the navbar!</h1>
 <!--          for desktop-->
           <h1 class="hidden sm:block">wow! you're one of those rare desktop users! this version of the website is much more advanced!! take a ride on the starry navigation system and start exploring! have fun :)</h1>
+
+          <h1 class="text-red-700 font-bold"><br>keep in mind, this is a preview of my website update! there are many things that are not working yet but will be shortly !</h1>
         </div>
 
 
@@ -246,7 +248,6 @@ function explode() {
   top: 0;
   right: 0;
   transform: scale(2);
-  //background: url("~/assets/home/explosion.gif") no-repeat;
   background-repeat: no-repeat;
   background-size: cover;
 }

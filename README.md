@@ -5,7 +5,10 @@ this is where all the cool stuff happens.
 
 
 ### general to-dos:
-* fix and cleanup about
+* get blogs not needing to reload
+* get link params for blogs working
+* chat window!!!
+* 
 * fix snake movement delay
 * get snake working again
 * finish blog functionality

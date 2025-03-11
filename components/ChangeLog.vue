@@ -81,7 +81,7 @@ onMounted(async () => {
 
       <div v-for="update in page.slice().reverse()" :key="update.path">
         <ChangeLogEntry :title="update.title!" :date="update.date!">
-          <ContentRenderer :value="update" class="blog">
+          <ContentRenderer :value="update" class="blog log">
           </ContentRenderer>
 
         </ChangeLogEntry>
@@ -152,4 +152,18 @@ img {
   }
 }
 
+</style>
+
+<style>
+.log *{
+  margin: 1.5rem 0 1.5rem 0;
+}
+
+.log *:first-child {
+  margin-top: 0;
+}
+
+log *:last-child {
+  margin-bottom: 0;
+}
 </style>

@@ -56,7 +56,6 @@ onMounted(async () => {
   font-family: "JetBrains Mono", monospace;
   font-size: 16px;
   text-wrap: wrap;
-  //line-height: 1em;
 }
 
 .error {

@@ -64,8 +64,8 @@ function launch() {
   //for screaming
   const julianLaunch = [
     {visibility: 'visible'},
-    {transform: 'translate(25%, -38vh) scale(0.5)'},
-    {transform: 'translate(25%, -90%) scale(0.5)', easing: 'ease-in-out', offset: 0.6},
+    {transform: 'translate(2px, -30vh)'},
+    {transform: 'translate(2px, -120%)', easing: 'ease-in-out', offset: 0.6},
   ]
 
   const launchTiming = {
@@ -193,10 +193,11 @@ function retract() {
   display: grid;
 
   grid-auto-rows: 100%;
-  grid-auto-columns: auto;
+  grid-auto-columns: min-content;
   grid-auto-flow: column;
 
   justify-content: space-evenly;
+  justify-items: center;
   scrollbar-width: none;
 
   max-height: 100%;
@@ -238,8 +239,7 @@ function retract() {
     display: block;
     right: 0;
     top: 0;
-    transform: translate(25%, -90%) scale(0.5);
-    filter: drop-shadow(0 0 30px #f1b347);
+    transform: translate(2px, -120%);
   }
 
   #leaning {

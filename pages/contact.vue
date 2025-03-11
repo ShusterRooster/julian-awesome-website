@@ -187,11 +187,10 @@ img {
 #phone {
   display: flex;
   justify-content: center;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100%;
+  height: 100%;
 
-  width: 1036px;
-  height: 719px;
+  aspect-ratio: 1036 / 719;
   object-fit: contain;
   position: relative;
 
@@ -228,7 +227,7 @@ img {
 
   background-clip: border-box;
   background-repeat: no-repeat;
-  background-size: 150% 150%;
+  background-size: 170% 170%;
   background-position: center;
   background-image: url("~/assets/contact/email/envelope.png");
 }
@@ -238,7 +237,6 @@ img {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  //padding-bottom: 10%;
 }
 
 #mailLink {
