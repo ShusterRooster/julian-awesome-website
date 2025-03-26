@@ -1,9 +1,32 @@
 <script setup lang="ts">
+useSeoMeta({
+  title: 'about :)',
+  description: 'some info about the GOAT - julian',
+  ogTitle: 'about JULIAN (the GOAT)',
+  ogDescription: 'some info about the GOAT - julian #cracked',
+  ogImage: '[og:image]',
+  ogUrl: 'julianshuster.com/about',
+  twitterTitle: '[twitter:title]',
+  twitterDescription: '[twitter:description]',
+  twitterImage: '[twitter:image]',
+  twitterCard: 'summary'
+})
 
+useHead({
+  htmlAttrs: {
+    lang: 'en'
+  },
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/gif',
+      href: '/icons/flower.gif'
+    }
+  ]
+})
 </script>
 
 <template>
-  <title>about :)</title>
   <div class="background" id="background"></div>
 
   <div id="container">
@@ -12,7 +35,7 @@
       <img src="~/assets/about/fullname.gif" alt="julian aaron shuster">
     </div>
 
-    <img class="border" src="~/assets/borders/butterflyborder.gif" alt="butterfly border">
+    <img class="divider" src="~/assets/borders/butterflyborder.gif" alt="butterfly border">
 
     <div id="rotating">
       <img id="central" src="~/assets/julian/armsopen.png" alt="arms open">
@@ -29,7 +52,7 @@
 
     <div class="info">
       <h2 style="grid-area: header">as a youngin</h2>
-      <img style="grid-area: border" class="border" src="~/assets/borders/faces.gif" alt="faces border">
+      <img style="grid-area: border" class="divider" src="~/assets/borders/faces.gif" alt="faces border">
       <img style="grid-area: image" src="~/assets/julian/youngin/babypaint.png" alt="baby julian painting">
       <img style="grid-area: image2" src="~/assets/julian/youngin/marker.png" alt="baby julian marker stuff">
       <p style="grid-area: text; text-align: left">
@@ -49,7 +72,7 @@
       I also went to private schools from 2nd to 5th grade because the local school district did not have the ability to
       help me in the ways i needed.
     </h2>
-    <img class="border" src="~/assets/borders/squiggly.gif" alt="ufo border">
+    <img class="divider" src="~/assets/borders/squiggly.gif" alt="ufo border">
 
     <div id="mental">
       <div id="mental-logo">
@@ -60,7 +83,7 @@
         <img class="notMobile" src="~/assets/about/bulgebrain.gif" alt="bulge brain">
       </div>
 
-      <img class="border" style="margin-bottom: 0" src="~/assets/borders/allseeing.gif" alt="all seeing border">
+      <img class="divider" style="margin-bottom: 0" src="~/assets/borders/allseeing.gif" alt="all seeing border">
 
 
       <h3>
@@ -123,7 +146,7 @@
 
     </div>
 
-    <img class="border" src="~/assets/borders/squiggly.gif" alt="ufo border">
+    <img class="divider" src="~/assets/borders/squiggly.gif" alt="ufo border">
 
     <h2>also long island fucking sucks</h2>
     <div id="longIsland">
@@ -141,7 +164,7 @@
       i Hate long island... especially nassau county!!
     </h2>
 
-    <img class="border" src="~/assets/borders/sparkles.gif" alt="sparkles">
+    <img class="divider" src="~/assets/borders/sparkles.gif" alt="sparkles">
 
     <h1>now i have a question for you guys!!!</h1>
     <img src="~/assets/borders/alienborder.gif" alt="alien border">
@@ -193,7 +216,7 @@
 
   border: 5px solid white;
   border-radius: 25px;
-  padding: 2em;
+  padding: 2rem;
 }
 
 .info > img {
@@ -202,7 +225,7 @@
 }
 
 .info > p {
-  margin-left: 2em;
+  margin-left: 2rem;
 }
 
 #longIsland {
@@ -263,7 +286,7 @@ img {
   align-content: center;
   align-items: center;
   text-align: center;
-  font-size: 1em;
+  font-size: 1rem;
   width: 100%;
 }
 
@@ -272,7 +295,7 @@ img {
   height: auto;
 }
 
-.border {
+.divider {
   width: 80%;
   margin-bottom: 5%;
 }
@@ -296,24 +319,24 @@ img {
 }
 
 h1 {
-  font-size: 5em;
+  font-size: 5rem;
 }
 
 h2 {
-  font-size: 4em;
+  font-size: 4rem;
 }
 
 h3 {
-  font-size: 3em;
+  font-size: 3rem;
 }
 
 p {
-  font-size: 2em;
+  font-size: 2rem;
 }
 
 @media only screen and (max-width: 640px) {
   * {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-family: "Jacquard 12", monospace;
   }
 
@@ -334,7 +357,7 @@ p {
   }
 
   .info {
-    margin-top: 1em;
+    margin-top: 1rem;
     max-height: 100%;
     grid-template-areas:
       "header header"
@@ -342,14 +365,14 @@ p {
       "image image2"
       "text text";
 
-    padding: 0.5em;
+    padding: 0.5rem;
   }
 
   .info > p {
     margin-left: 0;
   }
 
-  .border {
+  .divider {
     width: 100%;
   }
 
@@ -380,19 +403,19 @@ p {
   }
 
   h1 {
-    font-size: 2em;
+    font-size: 2rem;
   }
 
   h2 {
-    font-size: 1em;
+    font-size: 1rem;
   }
 
   h3 {
-    font-size: 0.5em;
+    font-size: 0.5rem;
   }
 
   p {
-    font-size: 0.5em;
+    font-size: 0.5rem;
   }
 
   .notMobile {

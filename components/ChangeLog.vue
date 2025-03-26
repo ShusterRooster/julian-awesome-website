@@ -2,13 +2,18 @@
 
 import ChangeLogEntry from "~/components/ChangeLogEntry.vue";
 
+const {data: page} = await useAsyncData('changelogs', () => {
+  return queryCollection('changelogs').all()
+})
+
+
 onMounted(async () => {
   // Wait for the next DOM update cycle
   await nextTick()
 
   const box = document.getElementById("box") as HTMLDivElement
   const div = box.clientWidth / 3;
-  const cutoff = 5
+  const cutoff = 1.5
 
   function transforms(x: number, y: number, el: HTMLDivElement) {
     const bounds = el.getBoundingClientRect();
@@ -48,6 +53,7 @@ onMounted(async () => {
       }
     });
   }
+
   if (!window.matchMedia("(pointer: coarse)").matches) {
     window.onmousemove = (e: MouseEvent) => {
       setTransform(e)
@@ -66,54 +72,26 @@ onMounted(async () => {
 
   <div id="box">
     <div id="header">
-      <span><img src="~/assets/home/stars/star-eye.gif" alt="green star eye"></span>
+      <span><img src="~/assets/misc/cyber_colors.gif" alt="cyber bear"></span>
       <h1>changelog!</h1>
       <span><img src="~/assets/home/wizz.gif" alt="epic wizard"></span>
     </div>
-    <img src="~/assets/borders/starsilverborder.gif" style="margin-bottom: 15px" alt="#epic star border">
+    <img src="~/assets/borders/starsilverborder.gif" alt="#epic star border">
     <div id="entries">
 
-      <ChangeLogEntry title="happy birthday update!!! 🎉" date="september 2, 2024">
-        hello julian awesome website fans!! today is my 20th birthday!!!!<br>
+      <div v-for="update in page.slice().reverse()" :key="update.path">
+        <ChangeLogEntry :title="update.title!" :date="update.date!">
+          <ContentRenderer :value="update" class="blog log">
+          </ContentRenderer>
 
-        later today, I will be hosting a birthday party in new paltz. i printed and distributed ~40 flyers so hopefully i meet some amazing new people and have a great time :)<br><br>
-        in preparation for this event, I have added a <NuxtLink to="/contact">contact</NuxtLink> page so that people can scan my amazing cyborg chip and be able to contact me.<br><br>
-        hope you enjoy!
-
-        -julian
-      </ChangeLogEntry>
-
-      <ChangeLogEntry title="major update!" date="july 30, 2024">
-        hello julian awesome website fans! I come to you with news of a massive update I have been working on!<br><br>
-
-        I have now made the existing pages friendly for mobile and have added a custom julian navigation menu for mobile
-        devices!<br>
-
-        unfortunately, the layout for tablets has not yet been optimized so please don't look at this website on there
-        LOL<br><br>
-
-        in this update I have also added the
-        <NuxtLink to="/terminal">terminal</NuxtLink>
-        where you can type in commands and some other Epic stuff!<br><br>
-
-        thanks for reading and stay tuned for future awesome updates!!! :)
-      </ChangeLogEntry>
-
-      <ChangeLogEntry title="changelog added" date="july 24, 2024">
-        fuck yeah!! welcome to the changelog! I will be putting website updates here as
-        I add them so check back in every so often!
-      </ChangeLogEntry>
+        </ChangeLogEntry>
+      </div>
     </div>
   </div>
 
 </template>
 
 <style scoped>
-h1 {
-  font-size: 3em;
-  margin: 0;
-}
-
 a {
   transition: color 0.3s;
 }
@@ -125,6 +103,10 @@ a:hover {
 #entries {
   max-height: 400px;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 1rem;
 }
 
 #header {
@@ -134,7 +116,7 @@ a:hover {
 }
 
 #header img {
-  height: 3em;
+  height: 3rem;
   width: auto;
 }
 
@@ -143,7 +125,7 @@ a:hover {
   flex-direction: column;
 
   border-radius: 25px;
-  background-image: url("~/assets/home/stars/nightstars.gif");
+  background-image: url("~/assets/stars/nightstars.gif");
   background-position: center;
   background-size: cover;
 
@@ -161,14 +143,27 @@ img {
 /* Small devices such as large phones (640px and up) */
 @media only screen and (max-width: 640px) {
   #header img {
-    height: 1em;
+    height: 1rem;
     width: auto;
   }
 
-  h1 {
-    font-size: 1.5em;
-    margin: 0;
+  #entries {
+    max-height: 60vh;
   }
 }
 
+</style>
+
+<style>
+.log *{
+  margin: 1.5rem 0 1.5rem 0;
+}
+
+.log *:first-child {
+  margin-top: 0;
+}
+
+log *:last-child {
+  margin-bottom: 0;
+}
 </style>

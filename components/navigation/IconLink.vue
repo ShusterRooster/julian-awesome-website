@@ -8,69 +8,57 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div id="link">
-    <NuxtLink :to="props.to">
+  <NuxtLink class="link" style="text-decoration: none;" :to="props.to">
+      <slot></slot>
+    <div id="text">
       {{ props.name }}
-
-      <span id="icon">
-        <slot></slot>
-      </span>
-    </NuxtLink>
-
-  </div>
+    </div>
+  </NuxtLink>
 
 </template>
 
 <style scoped>
 
-#link {
+.link {
   position: relative;
+  display: grid;
 
-  display: flex;
-  align-items: flex-end;
-  align-content: flex-end;
-  flex-wrap: nowrap;
+  grid-auto-columns: 1fr;
+  grid-auto-rows: 3fr 1fr;
   text-align: center;
-  justify-content: space-evenly;
-  gap: 0.25em;
+  place-items: center;
 
-  margin: 10px 0 10px 0;
+  row-gap: 0.5rem;
+
+  width: 100%;
+  height: 100%;
 
   transition: transform 0.5s ease-out;
   transform-origin: top left;
+}
 
+#text {
+  font-size: 2rem;
+  line-height: 1;
+  align-self: end;
+  color: #e3b73c;
   text-shadow: #0c0c0c 1px 1px;
 }
 
-a {
-  color: white;
-  text-decoration: none;
-  font-family: "Micro 5", monospace;
-}
+:slotted(img) {
+  max-height: 100%;
+  height: 100%;
 
-#icon {
-  display: inline-block;
-  max-height: 1em;
-  max-width: 1em;
   object-fit: scale-down;
-}
-
-#icon > * {
   margin: 0;
-  max-width: inherit;
-  max-height: inherit;
+
+  align-self: center;
+  min-height: 0;
 }
 
 /*
   link transitions
  */
-a {
-  color: white;
-  position: relative;
-  text-decoration: none;
-  font-family: "Micro 5", monospace;
-  font-size: 25px;
-}
 
 a::before {
   content: '';
@@ -78,12 +66,12 @@ a::before {
   width: 100%;
   height: 4px;
   border-radius: 4px;
-  background-color: #ffffff;
+  background-color: #e3b73c;
   bottom: 0;
   left: 0;
   transform-origin: right;
   transform: scaleX(0);
-  transition: transform .3s ease-in-out;
+  transition: transform .2s ease-in-out;
 }
 
 a:hover::before, a:active::before {
