@@ -5,13 +5,13 @@ this is where all the cool stuff happens.
 
 
 ### general to-dos:
-* get blogs not needing to reload
-* get link params for blogs working
-* chat window!!!
-* 
+* look more into vue transitions to make blog transitions seamless
+* fix blog scrolling on mobile
+* create actual blog entry
+* fix up about at some point
+* chat window!!! - make your own lol
 * fix snake movement delay
 * get snake working again
-* finish blog functionality
 ```
                \
                 \\

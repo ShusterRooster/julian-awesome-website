@@ -1,21 +1,12 @@
 <script setup lang="ts">
 useSeoMeta({
-  title: 'dating <3',
+  title: 'dating <3 - archive',
   description: 'ARCHIVED: my dating site hehe',
-  ogTitle: 'dating <3',
+  ogTitle: 'dating <3 - archive',
   ogDescription: 'ARCHIVED: my dating site hehe',
-  ogImage: '[og:image]',
-  ogUrl: 'julianshuster.com/archive/dating',
-  twitterTitle: '[twitter:title]',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]',
-  twitterCard: 'summary'
 })
 
 useHead({
-  htmlAttrs: {
-    lang: 'en'
-  },
   link: [
     {
       rel: 'icon',

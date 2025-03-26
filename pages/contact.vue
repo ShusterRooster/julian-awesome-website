@@ -4,18 +4,9 @@ useSeoMeta({
   description: 'contact julian (the GOAT) here!',
   ogTitle: 'contact',
   ogDescription: 'contact julian (the GOAT) here!',
-  ogImage: '[og:image]',
-  ogUrl: 'julianshuster.com/contact',
-  twitterTitle: '[twitter:title]',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]',
-  twitterCard: 'summary'
 })
 
 useHead({
-  htmlAttrs: {
-    lang: 'en'
-  },
   link: [
     {
       rel: 'icon',
@@ -56,9 +47,6 @@ function waveJulian() {
 
 <template>
   <title>contact</title>
-<!--&lt;!&ndash;  <link rel="icon" href="/animated/dancingsmiley.gif" type="image/gif">&ndash;&gt;-->
-<!--  <link rel="shortcut icon" href="/smiley.png" type="image/png">-->
-
   <div class="background" id="background"></div>
 
   <div id="container">

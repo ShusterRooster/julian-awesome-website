@@ -5,14 +5,8 @@ const module = useCssModule("terminal")
 useSeoMeta({
   title: 'terminal',
   description: 'awesome julian terminal, still WIP! has some fun commands :)',
-  ogTitle: 'terminal',
+  ogTitle: 'terminal 🖳',
   ogDescription: 'awesome julian terminal, still WIP! has some fun commands :)',
-  ogImage: '[og:image]',
-  ogUrl: 'julianshuster.com/terminal',
-  twitterTitle: '[twitter:title]',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]',
-  twitterCard: 'summary'
 })
 
 useHead({

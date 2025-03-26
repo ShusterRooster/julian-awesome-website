@@ -3,20 +3,11 @@
 useSeoMeta({
   title: 'julian AWESOME home',
   description: 'welcome to the julian awesome website experience!!!',
-  ogTitle: 'home',
+  ogTitle: 'julian AWESOME home',
   ogDescription: 'welcome to the julian awesome website experience!!!',
-  ogImage: '[og:image]',
-  ogUrl: 'julianshuster.com',
-  twitterTitle: '[twitter:title]',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]',
-  twitterCard: 'summary'
 })
 
 useHead({
-  htmlAttrs: {
-    lang: 'en'
-  },
   link: [
     {
       rel: 'icon',

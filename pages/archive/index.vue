@@ -1,24 +1,13 @@
 <script setup lang="ts">
 
-import Dating from "~/pages/archive/dating.vue";
-
 useSeoMeta({
   title: 'archive',
   description: 'awesome julian projects now archived at your convenience!',
   ogTitle: 'archive',
   ogDescription: 'awesome julian projects now archived at your convenience!',
-  ogImage: '[og:image]',
-  ogUrl: 'julianshuster.com/archive',
-  twitterTitle: '[twitter:title]',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]',
-  twitterCard: 'summary'
 })
 
 useHead({
-  htmlAttrs: {
-    lang: 'en'
-  },
   link: [
     {
       rel: 'icon',
@@ -66,7 +55,7 @@ useHead({
       </div>
 
       <div id="items">
-        <ArchiveItem title="dating" path="/archive/dating" description="this was my dating page, i am now in a wonderful relationship!">
+        <ArchiveItem title="dating" path="/archive/dating" description="this page is too powerful. look at your own risk!">
           <template #desktop>
             <img src="~/assets/archive/screengrabs/datingdesktop.gif" alt="dating desktop"/>
           </template>
@@ -79,7 +68,6 @@ useHead({
             <img src="~/assets/dating/heartbg.gif" alt="dating background"/>
           </template>
         </ArchiveItem>
-<!--        ../-->
 
         <ArchiveItem title="old home" path="/archive/home" description="the OG julian awesome website home page!">
           <template #desktop>

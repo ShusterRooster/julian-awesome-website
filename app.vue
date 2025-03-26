@@ -1,20 +1,23 @@
 <script setup lang="ts">
-import JulianNav from "~/components/navigation/JulianNav.vue";
-import JulianNavMobile from "~/components/navigation/JulianNavMobile.vue";
 import {SpeedInsights} from '@vercel/speed-insights/vue';
 import StarryNav from "~/components/navigation/StarryNav.vue";
 
+useSeoMeta({
+  ogImage: '/awesomeImage.jpg'
+})
+
 useHead({
-  titleTemplate: '%s'
+  titleTemplate: '%s',
+
+  htmlAttrs: {
+    lang: 'en'
+  },
 })
 
 </script>
 
 <template>
   <SpeedInsights/>
-  <!--  <JulianNav top="3vh" right="3vw"></JulianNav>-->
-  <!--  <JulianNavMobile top="4vh" right="6vw"></JulianNavMobile>-->
-
   <StarryNav/>
   <NuxtPage/>
 </template>
@@ -36,18 +39,30 @@ body {
 
 .blog > h1 {
   @apply text-7xl;
+  @apply my-7;
 }
 
 .blog > h2 {
   @apply text-6xl;
+  @apply my-6;
 }
 
 .blog > h3 {
   @apply text-5xl;
+  @apply my-5;
 }
 
 .blog > h4, .blog > p {
   @apply text-4xl;
+  @apply my-4;
+}
+
+.blog *:first-child {
+  margin-top: 0;
+}
+
+.blog *:last-child {
+  margin-bottom: 0;
 }
 
 @media only screen and (max-width: 640px) {
@@ -57,19 +72,22 @@ body {
 
   .blog > h1 {
     @apply text-5xl;
+    @apply my-5;
   }
 
   .blog > h2 {
     @apply text-4xl;
+    @apply my-4;
   }
 
   .blog > h3 {
     @apply text-3xl;
+    @apply my-3;
   }
 
   .blog > h4, .blog > p {
     @apply text-2xl;
+    @apply my-2;
   }
-
 }
 </style>

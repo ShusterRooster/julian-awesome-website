@@ -2,22 +2,13 @@
 import {StarFall} from "#components";
 
 useSeoMeta({
-  title: 'home archive',
+  title: 'home - archive',
   description: 'OG julian awesome website experience!!',
-  ogTitle: 'home archive',
+  ogTitle: 'home - archive',
   ogDescription: 'OG julian awesome website experience!!',
-  ogImage: '[og:image]',
-  ogUrl: 'julianshuster.com',
-  twitterTitle: '[twitter:title]',
-  twitterDescription: '[twitter:description]',
-  twitterImage: '[twitter:image]',
-  twitterCard: 'summary'
 })
 
 useHead({
-  htmlAttrs: {
-    lang: 'en'
-  },
   link: [
     {
       rel: 'icon',
