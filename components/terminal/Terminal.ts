@@ -254,4 +254,4 @@ const debug = new DebugCommand({
 })
 
 //no snake rn, the text spacing is broken rn :(
-Terminal.commands.push(fart, help, navTo, clear, scripts, snake)
+Terminal.commands.push(fart, help, navTo, clear, scripts)
