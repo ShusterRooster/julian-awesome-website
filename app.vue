@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {SpeedInsights} from '@vercel/speed-insights/vue';
-import StarryNav from "~/components/navigation/StarryNav.vue";
+import GSAPStarryNav from "~/components/navigation/GSAPStarryNav.vue";
 
 useSeoMeta({
   ogImage: '/awesomeImage.jpg'
@@ -18,8 +18,8 @@ useHead({
 
 <template>
   <SpeedInsights/>
-  <StarryNav/>
   <NuxtPage/>
+  <GSAPStarryNav/>
 </template>
 
 <style lang="postcss">

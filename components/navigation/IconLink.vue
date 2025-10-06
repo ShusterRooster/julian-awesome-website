@@ -38,6 +38,7 @@ const props = defineProps<{
 }
 
 #text {
+  font-family: "Kode Mono", monospace;
   font-size: 2rem;
   line-height: 1;
   align-self: end;
