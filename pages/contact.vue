@@ -22,8 +22,10 @@ const waving = ref<HTMLImageElement>()
 const interact = ref<HTMLDivElement>()
 const hello = ref<HTMLHeadingElement>()
 
+
+//TODO replace with GSAP animations
 function waveJulian() {
-  if(sitting.value && waving.value) {
+  if (sitting.value && waving.value) {
     sitting.value.style.display = 'none'
     waving.value.style.display = 'block'
 
@@ -51,15 +53,15 @@ function waveJulian() {
 
   <div id="container">
 
-    <img id="threat" src="~/assets/contact/contact.gif" alt="you will contact me">
+    <img class="w-lg sm:w-sm" src="~/assets/contact/contact.gif" alt="you will contact me">
 
-    <div id="info">
+    <div class="flex max-w-full gap-6">
       <div class="half notMobile">
         <img src="../assets/julian/point.gif" alt="pointing julian">
       </div>
 
-      <div class="half" style="gap: 2rem">
-        <h1 id="howTo">here's how to contact me:</h1>
+      <div class="half">
+        <h1 class="mb-0">here's how to contact me:</h1>
 
         <div id="phone">
           <div id="phoneScreen">
@@ -68,13 +70,16 @@ function waveJulian() {
 
             <img src="../assets/julian/chips.gif" style="width: 50%" alt="chips!!!">
             <h2>
-              main: <NuxtLink class="color" to="https://www.instagram.com/julianshuster_/">@julianshuster_</NuxtLink>
+              main:
+              <NuxtLink class="color" to="https://www.instagram.com/julianshuster_/">@julianshuster_</NuxtLink>
             </h2>
 
 
             <img src="~/assets/contact/camera.gif" style="width: 50%" alt="camera">
             <h2>
-              photography: <NuxtLink class="color" to="https://www.instagram.com/julianscams/">@julianscams</NuxtLink> (dead lol)
+              photography:
+              <NuxtLink class="color" to="https://www.instagram.com/julianscams/">@julianscams</NuxtLink>
+              (dead lol)
             </h2>
           </div>
         </div>
@@ -139,19 +144,11 @@ function waveJulian() {
   padding: 3% 5% 0 5%;
 }
 
-#threat {
-  width: 50vw;
-}
-
-#info {
-  display: flex;
-  max-width: 100%;
-}
-
 .half {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   max-width: 65%;
   padding: 25px;
   text-shadow: rgba(12, 12, 12, 0.4) 2px 2px;
@@ -315,10 +312,6 @@ h2 {
     padding-top: 5%;
   }
 
-  #howTo {
-    margin-bottom: 0;
-  }
-
   #email {
     padding: 0;
     background-size: 150% 200%;
@@ -344,9 +337,7 @@ h2 {
 
   #phone {
     background-image: none;
-
-    width: auto;
-    height: auto;
+    aspect-ratio: auto;
   }
 
   #phoneScreen {
@@ -356,16 +347,15 @@ h2 {
     left: 0;
     top: 0;
     width: 100%;
+    max-height: 100%;
     height: 100%;
+
+    overflow: visible;
   }
 
   .half {
     padding: 0;
     max-width: 100%;
-  }
-
-  #threat {
-    width: 90vw;
   }
 
   #sittingJulian {
