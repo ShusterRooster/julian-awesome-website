@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import {gsap} from "gsap"
 
 useSeoMeta({
   title: 'julian AWESOME home',
@@ -21,6 +22,12 @@ const {data: page} = await useAsyncData('blogs', () => {
   return queryCollection('blogs').all()
 })
 
+const route = useRoute()
+if(route.query.chip) {
+
+}
+
+
 
 const explosion = ref()
 const explosionImg = ref()
@@ -34,16 +41,38 @@ function explode() {
   setTimeout(() => {
     // explosion.value.style.display = 'none'
     explosion.value.style.backgroundImage = ''
-  }, 900)
+  }, 800)
 }
+
+onMounted(async () => {
+  // Wait for the next DOM update cycle
+  await nextTick()
+
+   logoFlyIn()
+})
+
+function logoFlyIn() {
+  const flyInDuration = 2
+  const flyDelay = 0.15
+  const logoTween = {xPercent: -205, duration: flyInDuration, ease: "elastic.out(1, 0.5)"}
+  const mobileLogos = document.querySelectorAll("#mobileContainer *");
+
+  gsap.timeline()
+      .to("#mobileContainer", {duration: 0, opacity: 1})
+      .from(mobileLogos[0]!, logoTween)
+      .from(mobileLogos[1]!, logoTween, `<${flyDelay}`)
+      .from(mobileLogos[2]!, logoTween, `<${flyDelay}`)
+}
+
+
 
 </script>
 
 <template>
   <div class="background" id="back"></div>
 
-  <div id="container">
-    <div id="mobileContainer">
+  <div class="w-full h-full flex flex-col items-center p-4 overflow-x-hidden text-2xl sm:text-4xl font-display">
+    <div id="mobileContainer" @click="logoFlyIn">
       <img src="~/assets/logos/julianlogomobile.gif" alt="julian"
            style="align-self: start"/>
 
@@ -61,23 +90,29 @@ function explode() {
       <div class="unskew">
         <img src="~/assets/home/welcome2.gif" alt="welcome">
 
-        <img src="~/assets/home/fishspinning.gif" alt="fishie!" class="hidden sm:block" style="position: absolute; right: 10%; top: 20%;">
+        <img src="~/assets/home/fishspinning.gif" alt="fishie!" class="hidden sm:block"
+             style="position: absolute; right: 10%; top: 20%;">
       </div>
 
       <div id="intro" class="sm:my-8">
         <img style="grid-area: big" class="hidden sm:block" src="~/assets/julian/julianstanding.png" alt="standing">
 
-        <div id="introText" style="grid-area: text">
-          <h1>welcome to the julian awesome website!<br>
+        <div class="ml-6 mt-6 self-start sm:m-0"  style="grid-area: text">
+          <p v-if="route.query.chip" class="text-green-600 font-extrabold">
+            wow you are special! you got this website from the chip in my hand! how cool is that?
+            <br><br>
+          </p>
+
+          <p>welcome to the julian awesome website!<br>
             this is my love letter to the internet and my digital oasis. i hope you enjoy!
-          </h1><br>
+          </p><br>
 
-<!--          for mobile-->
-          <h1 class="sm:hidden">click on the little leaning julian at the bottom of the screen and start exploring! you can click anywhere on the screen to close the navbar!</h1>
-<!--          for desktop-->
-          <h1 class="hidden sm:block">wow! you're one of those rare desktop users! this version of the website is much more advanced!! take a ride on the starry navigation system and start exploring! have fun :)</h1>
-
-          <h1 class="text-red-700 font-bold"><br>keep in mind, this is a preview of my website update! there are many things that are not working yet but will be shortly !</h1>
+          <!--          for mobile-->
+<!--          <p class="sm:hidden text-5xl">click on the little leaning julian at the bottom of the screen and start-->
+<!--            exploring! you can click anywhere on the screen to close the navbar!</p>-->
+          <!--          for desktop-->
+          <p class="hidden sm:block">wow! you're one of those rare desktop users! this version of the website is much
+            more advanced!! take a ride on the starry navigation system and start exploring! have fun :)</p>
         </div>
 
 
@@ -85,7 +120,8 @@ function explode() {
         <img src="~/assets/borders/alienborder.gif" alt="aliens dancing" style="grid-area: img2"/>
 
         <div style="position: relative" @click="explode">
-          <img src="~/assets/julian/ominous.png" alt="big head ahh" style="grid-area: img3;" class="w-sm sm:max-w-auto"/>
+          <img src="~/assets/julian/ominous.png" alt="big head ahh" style="grid-area: img3;"
+               class="w-sm sm:max-w-auto"/>
           <div ref="explosion" id="explosion"/>
           <img src="~/assets/home/explosion.gif" ref="explosionImg" alt="hidden...." style="display: none">
         </div>
@@ -115,18 +151,22 @@ function explode() {
         </div>
 
         <div id="explain">
-          <h1>social media websites have robbed us of the beauty, character, and charm of the old internet.
+          <p>social media websites have robbed us of the beauty, character, and charm of the old internet.
             the internet used to be a trove of amazing, small, and unique websites, now it has been taken over
             entirely by trackers, ads, and general capitalist profit motive.<br><br>
 
             <strong class="font-bold text-7xl">it's time we take back the web!!!</strong><br><br>
 
             corporations will not limit our expression any longer.<br>
-            if you want to learn how to build a website, please check out <NuxtLink to="https://neocities.org/">neocities.org</NuxtLink>
-            and <NuxtLink to="/contact">contact</NuxtLink>  me if you have any questions!<br><br>
+            if you want to learn how to build a website, please check out
+            <NuxtLink to="https://neocities.org/">neocities.org</NuxtLink>
+            and
+            <NuxtLink to="/contact">contact</NuxtLink>
+            me if you have any questions!<br><br>
 
-            <NuxtLink to="https://github.com/ShusterRooster/julian-awesome-website">>>> check out my source code!!!</NuxtLink>
-          </h1>
+            <NuxtLink to="https://github.com/ShusterRooster/julian-awesome-website">>>> check out my source code!!!
+            </NuxtLink>
+          </p>
         </div>
 
       </div>
@@ -245,8 +285,7 @@ function explode() {
 
 #mainPanel {
   position: relative;
-  max-width: 80vw;
-  width: 100%;
+  width: 80%;
   height: 100%;
   margin-top: 3rem;
 
@@ -255,17 +294,6 @@ function explode() {
   box-shadow: 0 0 68px 11px rgba(0, 255, 0, 0.9);
   background-color: rgba(0, 0, 0, 0.85);
   border: 10px outset green;
-}
-
-#container {
-  width: 100%;
-  height: fit-content;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 3rem;
-  overflow-x: hidden;
 }
 
 #mobileContainer, #starBorder {
@@ -314,21 +342,18 @@ function explode() {
     flex-direction: column;
     justify-content: space-between;
 
-    will-change: filter;
-    transition: filter 300ms;
+    opacity: 0;
+
+    @apply gap-4;
+    @apply p-2;
+    @apply mt-4;
+
     width: 80vw;
     height: 15vh;
-
-    box-sizing: border-box;
-    margin-top: 3vh;
   }
 
   #mobileContainer img {
     overflow: auto;
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-    padding: 0.5rem;
   }
 
   #starBorder {
@@ -363,11 +388,6 @@ function explode() {
     transform: scale(1.5);
   }
 
-  #introText {
-    padding: 2rem 0 0 2rem;
-    align-self: flex-start;
-  }
-
   #monitor {
     width: 100%;
     height: 100%;
@@ -383,10 +403,6 @@ function explode() {
 
   #explain {
     padding: 1rem 1rem 0 1rem;
-  }
-
-  #container {
-    padding: 1rem;
   }
 
   #logo, #star {
