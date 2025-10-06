@@ -3,48 +3,27 @@
 @tailwind utilities;
 
 @layer base {
-    h1 {
-        @apply text-5xl;
-    }
-
-    h2 {
-        @apply text-4xl;
-    }
-
-    h3 {
-        @apply text-3xl;
-    }
-
-    h4 {
-        @apply text-2xl;
-    }
-
-    p {
-        @apply text-xl
-    }
-
     * {
         @apply text-white;
-        font-family: 'Micro 5', sans-serif;
-        font-weight: normal;
-    }
-
-    @media only screen and (max-width: 640px) {
-        h1 {
-            @apply text-3xl;
-        }
-
-        h2 {
-            @apply text-2xl;
-        }
-
-        h3 {
-            @apply text-xl;
-        }
+        /*font-family: 'Micro 5', sans-serif;*/
+        /*font-weight: normal;*/
     }
 }
 
 @layer components {
+    .font-geostar {
+        font-family: 'Geostar Fill', sans-serif;
+    }
+
+    .font-handjet {
+        font-family: 'Handjet', sans-serif;
+    }
+
+    .font-display {
+        font-family: 'Jersey 10', sans-serif;
+    }
+
+
     .background {
         width: 100vw;
         height: 100vh;
