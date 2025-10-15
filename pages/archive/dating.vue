@@ -1,8 +1,10 @@
 <script setup lang="ts">
+import {gsap} from "gsap"
+
 useSeoMeta({
-  title: 'dating <3 - archive',
+  title: 'dating <3 - julianOS',
   description: 'ARCHIVED: my dating site hehe',
-  ogTitle: 'dating <3 - archive',
+  ogTitle: 'dating <3 - julianOS',
   ogDescription: 'ARCHIVED: my dating site hehe',
 })
 
@@ -57,15 +59,22 @@ function rotateToDeg(deg: number, element: HTMLImageElement, transform = false) 
   }
 }
 
+let spinDirection = 1
+
+function rotateJulian() {
+  gsap.to(".standing", {rotateY: 360 * spinDirection, duration: 2, ease: "easeInOut"})
+  spinDirection *= -1
+}
+
 onMounted(async () => {
   // Wait for the next DOM update cycle
   await nextTick()
 
   const standing = document.getElementById("mobileStanding") as HTMLImageElement
-
-  standing.ontouchstart = () => {
-    rotateYMobile(standing)
-  }
+  //
+  // standing.ontouchstart = () => {
+  //   rotateYMobile(standing)
+  // }
 })
 
 </script>
@@ -74,11 +83,11 @@ onMounted(async () => {
   <div class="background" id="background"></div>
   <div id="container">
 
-    <img id="dating-text" class="notMobile" src="~/assets/dating/datingtext.gif" alt="dating"/>
+    <img id="dating-text" class="notMobile" src="../../assets/dating/datingtext.gif" alt="dating"/>
 
     <div id="mobileHeader">
-      <img id="dating-text" class="mobile" src="~/assets/dating/datingtext.gif" alt="dating"/>
-      <img id="border" class="mobile" src="~/assets/borders/heartbar.gif" alt="heart border"/>
+      <img id="dating-text" class="mobile" src="../../assets/dating/datingtext.gif" alt="dating"/>
+      <img id="border" class="mobile" src="../../assets/borders/heartbar.gif" alt="heart border"/>
     </div>
 
 
@@ -86,23 +95,23 @@ onMounted(async () => {
       <!--    ideas: user reviews, stats-->
       <div id="textContent">
 
-        <h1 id="hello">hello ladies!!!</h1>
+        <h1 id="hello">hello!!!</h1>
         <h1>not just browsing the web? are you also browsing for a relationship?!</h1>
 
         <div id="mobileImages">
-          <img src="~/assets/dating/heart-jumping.gif" alt="heart jumping"
+          <img src="../../assets/dating/heart-jumping.gif" alt="heart jumping"
                style="grid-area: 1 / 1 / 1 / 1"/>
 
-          <img src="~/assets/dating/arrow2heart.gif" alt="arrow in two hearts"
+          <img src="../../assets/dating/arrow2heart.gif" alt="arrow in two hearts"
                style="grid-area: 2 / 1 / 2 / 1"/>
 
-          <img id="mobileStanding" ref="mobileStanding"
-               src="~/assets/julian/julianstanding.png" alt="julian standing (he's so handsome)"/>
+          <img class="standing" id="mobileStanding" ref="mobileStanding" @click="rotateJulian"
+               src="../../assets/julian/julianstanding.png" alt="julian standing (he's so handsome)"/>
 
-          <img src="~/assets/dating/smilie.gif" alt="weird asf smilie face"
+          <img src="../../assets/dating/smilie.gif" alt="weird asf smilie face"
                style="grid-area: 1 / 3 / 1 / 3"/>
 
-          <img src="~/assets/dating/floating_heart.gif" alt="floating heart"
+          <img src="../../assets/dating/floating_heart.gif" alt="floating heart"
                style="grid-area: 2 / 3 / 2 / 3"/>
         </div>
 
@@ -115,8 +124,8 @@ onMounted(async () => {
 
 
         <div id="interestedDiv">
-          <img id="interested" src="~/assets/dating/interestedtext.gif" alt="interested?"/>
-            <img id="arrow" src="~/assets/dating/sign-arrows.gif"
+          <img id="interested" src="../../assets/dating/interestedtext.gif" alt="interested?"/>
+            <img id="arrow" src="../../assets/dating/sign-arrows.gif"
                alt="flashing arrow sign"/>
 
         </div>
@@ -128,20 +137,20 @@ onMounted(async () => {
       </div>
 
       <div id="desktopImages" class="notMobile">
-        <img id="standing" class="notMobile" ref="standing" @mouseover="rotateY()"
-             src="~/assets/julian/julianstanding.png" alt="julian standing (he's so handsome)"
+        <img id="standing" class="notMobile standing" ref="standing" @mouseover="rotateY()"
+             src="../../assets/julian/julianstanding.png" alt="julian standing (he's so handsome)"
              style=""/>
 
-        <img src="~/assets/dating/heart-jumping.gif" alt="heart jumping"
+        <img src="../../assets/dating/heart-jumping.gif" alt="heart jumping"
              style="left: 5vw; top: 15vh"/>
 
-        <img src="~/assets/dating/floating_heart.gif" alt="floating heart"
+        <img src="../../assets/dating/floating_heart.gif" alt="floating heart"
              style="right: 5vw; top: 15vh"/>
 
-        <img src="~/assets/dating/arrow2heart.gif" alt="arrow in two hearts"
+        <img src="../../assets/dating/arrow2heart.gif" alt="arrow in two hearts"
              style="top: 0; right: 0"/>
 
-        <img src="~/assets/dating/smilie.gif" alt="weird asf smilie face"
+        <img src="../../assets/dating/smilie.gif" alt="weird asf smilie face"
              style="left: 5vw; top: 5vh"/>
       </div>
     </div>

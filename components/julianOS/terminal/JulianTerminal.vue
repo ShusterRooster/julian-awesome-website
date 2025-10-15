@@ -1,27 +1,6 @@
 <script setup lang="ts">
-import Terminal from "~/components/terminal/Terminal";
+import Terminal from "~/components/julianOS/terminal/Terminal";
 const module = useCssModule("terminal")
-
-useSeoMeta({
-  title: 'terminal',
-  description: 'awesome julian terminal, still WIP! has some fun commands :)',
-  ogTitle: 'terminal 🖳',
-  ogDescription: 'awesome julian terminal, still WIP! has some fun commands :)',
-})
-
-useHead({
-  htmlAttrs: {
-    lang: 'en'
-  },
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/gif',
-      href: '/icons/terminal.gif'
-    }
-  ]
-})
-
 
 onMounted(async () => {
   // Wait for the next DOM update cycle
@@ -31,13 +10,10 @@ onMounted(async () => {
   new Terminal(terminalDiv, module)
 });
 
-
 </script>
 
 <template>
   <title>terminal</title>
-<!--  <link rel="icon" href="/animated/terminal.gif" type="image/gif">-->
-  <link rel="shortcut icon" href="/terminal.png" type="image/png">
   <div id="terminal"/>
 </template>
 
@@ -109,17 +85,15 @@ onMounted(async () => {
 
 #terminal {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   justify-content: flex-start;
 
   background-color: #0c0c0c;
-  max-width: 100vw;
-  min-height: 100vh;
+  width: 100%;
   height: 100%;
 
   padding: 20px;
   overflow: scroll;
   overflow-x: hidden;
-  margin-bottom: 10vh;
 }
 </style>

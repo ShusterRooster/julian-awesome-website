@@ -1,5 +1,5 @@
-import Terminal from "~/components/terminal/Terminal";
-import Point from "~/components/terminal/Point";
+import Terminal from "~/components/julianOS/terminal/Terminal";
+import Point from "~/components/julianOS/terminal/Point";
 
 interface SnakeHead {
     point: Point

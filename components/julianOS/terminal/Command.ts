@@ -19,7 +19,7 @@ maybe have an ascii julian nav for terminal only lolll
 omg julian nav themes per page
 */
 
-import Terminal from "~/components/terminal/Terminal";
+import Terminal from "~/components/julianOS/terminal/Terminal";
 
 function delay(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -339,7 +339,7 @@ export class SnakeCommand extends Command {
     override async run(input: string) {
         if (this.checkForHelp(input)) return
         const words = input.split(" ")
-        let {initSnake} = await import("~/components/terminal/Snake")
+        let {initSnake} = await import("~/components/julianOS/terminal/Snake")
 
         let difficulty: string
         let mode: string

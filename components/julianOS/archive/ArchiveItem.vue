@@ -49,9 +49,6 @@ onMounted(async () => {
 
 <style scoped>
 #item {
-  max-width: 80%;
-  max-height: 50%;
-
   width: 100%;
   height: 100%;
 
@@ -106,8 +103,8 @@ onMounted(async () => {
 
 @media only screen and (max-width: 640px) {
   #item {
-    max-height: 80%;
-    max-width: 90%;
+    height: 100%;
+    width: 100%;
   }
 
   #text {

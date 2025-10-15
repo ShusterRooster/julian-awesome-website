@@ -6,7 +6,7 @@ import {
     HelpCommand,
     NavCommand,
     ScriptsCommand, SnakeCommand
-} from "~/components/terminal/Command";
+} from "~/components/julianOS/terminal/Command";
 
 const ascii =
     "       _       ___                __                      _             __\n" +
