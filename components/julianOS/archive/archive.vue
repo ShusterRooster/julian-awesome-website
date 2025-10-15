@@ -15,7 +15,21 @@ import JulianApp from "~/components/julianOS/JulianApp.vue";
       </template>
 
       <template #background>
-        <img src="../../../assets/dating/heartbg.gif" alt="dating background"/>
+        <img src="~/assets/dating/heartbg.gif" alt="dating background"/>
+      </template>
+    </ArchiveItem>
+
+    <ArchiveItem title="old home" path="/archive/home" description="the OG julian awesome website home page!">
+      <template #desktop>
+        <img src="~/assets/julianOS/screengrabs/homedesktop.gif" alt="home desktop"/>
+      </template>
+
+      <template #mobile>
+        <img src="~/assets/julianOS/screengrabs/homemobile.gif" alt="home mobile"/>
+      </template>
+
+      <template #background>
+        <img src="~/assets/stars/slowdark.gif" alt="home background"/>
       </template>
     </ArchiveItem>
   </div>
