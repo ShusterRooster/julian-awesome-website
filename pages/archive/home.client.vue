@@ -21,7 +21,7 @@ useHead({
 
 <template>
   <title>julian epic awesome website</title>
-  <Link rel="icon" type="image/x-icon" href="/dinosaur.png"></Link>
+  <Link rel="icon" type="image/x-icon" href="/icons/dinosaur.png"></Link>
   <StarFall/>
 
   <div class="overlay">
