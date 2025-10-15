@@ -23,10 +23,9 @@ const {data: page} = await useAsyncData('blogs', () => {
 })
 
 const route = useRoute()
-if(route.query.chip) {
+if (route.query.chip) {
 
 }
-
 
 
 const explosion = ref()
@@ -48,31 +47,44 @@ onMounted(async () => {
   // Wait for the next DOM update cycle
   await nextTick()
 
-   logoFlyIn()
+  logoFlyIn()
+
+  document.onscroll = function(){
+    const scrollArea = document.body.scrollHeight - window.innerHeight
+    const scrollPercent = window.scrollY / scrollArea * 100
+
+    gsap.to(".star", {rotation: scrollPercent * 4, ease: "power2.out" })
+  }
+
 })
 
 function logoFlyIn() {
   const flyInDuration = 2
   const flyDelay = 0.15
-  const logoTween = {xPercent: -205, duration: flyInDuration, ease: "elastic.out(1, 0.5)"}
-  const mobileLogos = document.querySelectorAll("#mobileContainer *");
+  const logoTween = (x: number) => {
+    return {xPercent: x, duration: flyInDuration, ease: "elastic.out(1, 0.5)"}
+  }
+  const mobileLogos = document.querySelectorAll("#logos *");
 
   gsap.timeline()
-      .to("#mobileContainer", {duration: 0, opacity: 1})
-      .from(mobileLogos[0]!, logoTween)
-      .from(mobileLogos[1]!, logoTween, `<${flyDelay}`)
-      .from(mobileLogos[2]!, logoTween, `<${flyDelay}`)
+      .to("#logos", {duration: 0, opacity: 1})
+      .from(mobileLogos[0]!, logoTween(-225))
+      .from(mobileLogos[1]!, logoTween(-250), `<${flyDelay}`)
+      .from(mobileLogos[2]!, logoTween(-325), `<${flyDelay}`)
+      .from(mobileLogos[3]!, {xPercent: 50, duration: flyInDuration, ease: "elastic.out(2, 0.5)"}, `<`)
+      .from(".star", {xPercent: 100,  ease: "elastic.out", rotate: -40, duration: 2 }, `<0.8`)
+      .set(".star", {opacity: 1}, "<")
 }
-
-
 
 </script>
 
 <template>
-  <div class="background" id="back"></div>
+  <div class="background" id="back">
+    <img class="star" src="~/assets/stars/star-eye.gif" alt="star eye lol">
+  </div>
 
   <div class="w-full h-full flex flex-col items-center p-4 overflow-x-hidden text-2xl sm:text-4xl font-display">
-    <div id="mobileContainer" @click="logoFlyIn">
+    <div id="logos" class="sm:" @click="logoFlyIn">
       <img src="~/assets/logos/julianlogomobile.gif" alt="julian"
            style="align-self: start"/>
 
@@ -84,7 +96,6 @@ function logoFlyIn() {
     </div>
 
     <div id="starBorder"></div>
-    <img id="logo" src="~/assets/logos/julianlogo.gif" alt="julian awesome website logo"/>
 
     <div id="mainPanel">
       <div class="unskew">
@@ -97,7 +108,7 @@ function logoFlyIn() {
       <div id="intro" class="sm:my-8">
         <img style="grid-area: big" class="hidden sm:block" src="~/assets/julian/julianstanding.png" alt="standing">
 
-        <div class="ml-6 mt-6 self-start sm:m-0"  style="grid-area: text">
+        <div class="ml-6 mt-6 self-start sm:m-0" style="grid-area: text">
           <p v-if="route.query.chip" class="text-green-600 font-extrabold">
             wow you are special! you got this website from the chip in my hand! how cool is that?
             <br><br>
@@ -108,8 +119,8 @@ function logoFlyIn() {
           </p><br>
 
           <!--          for mobile-->
-<!--          <p class="sm:hidden text-5xl">click on the little leaning julian at the bottom of the screen and start-->
-<!--            exploring! you can click anywhere on the screen to close the navbar!</p>-->
+          <!--          <p class="sm:hidden text-5xl">click on the little leaning julian at the bottom of the screen and start-->
+          <!--            exploring! you can click anywhere on the screen to close the navbar!</p>-->
           <!--          for desktop-->
           <p class="hidden sm:block">wow! you're one of those rare desktop users! this version of the website is much
             more advanced!! take a ride on the starry navigation system and start exploring! have fun :)</p>
@@ -172,9 +183,6 @@ function logoFlyIn() {
       </div>
 
       <ChangeLog></ChangeLog>
-
-
-      <img id="star" src="~/assets/stars/star-eye.gif" alt="star eye lol">
     </div>
 
     <img src="~/assets/home/skelebones.gif" alt="skelebones">
@@ -296,20 +304,12 @@ function logoFlyIn() {
   border: 10px outset green;
 }
 
-#mobileContainer, #starBorder {
+#logos, #starBorder {
   display: none;
 }
 
 .unskew {
   transform: skew(-8deg);
-}
-
-#star {
-  position: absolute;
-  right: 0;
-  top: 0;
-
-  transform: translate(50%, -50%) scale(1.5);
 }
 
 #back {
@@ -337,7 +337,7 @@ function logoFlyIn() {
     align-items: center;
   }
 
-  #mobileContainer {
+  #logos {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -347,12 +347,12 @@ function logoFlyIn() {
     @apply gap-4;
     @apply p-2;
     @apply mt-4;
+    @apply h-32;
 
-    width: 80vw;
-    height: 15vh;
+    width: 90%;
   }
 
-  #mobileContainer img {
+  #logos img {
     overflow: auto;
   }
 
@@ -405,8 +405,14 @@ function logoFlyIn() {
     padding: 1rem 1rem 0 1rem;
   }
 
-  #logo, #star {
-    display: none;
+  .star {
+    position: fixed;
+    @apply scale-75;
+    @apply right-4;
+    @apply top-4;
+
+    filter: brightness(0.4);
+    opacity: 0;
   }
 
   #back {
