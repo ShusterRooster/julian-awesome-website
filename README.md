@@ -9,7 +9,7 @@ this is where all the cool stuff happens.
 * refactor code to use less CSS classes and more tailwind
 
 ### index:
-* add fun thing about the chip (add a custom url query for the chip so that people who came to the website via the chip get a special message)
+* test out on different zoom levels
 * add fun easter eggs
 * add quick links maybe
 * make animation for logo on desktop
@@ -18,9 +18,10 @@ this is where all the cool stuff happens.
 * changelog to move with gyroscope on mobile would be crazy (allow for reduced motion settings)
 * chat window!!! - make your own lol
 
-### archive:
-* make file browser larger on mobile
-* fix "ladies" on dating lol (cope)
+### ~~archive:~~ julianOS: 
+* give glerp more lines 
+* add tetris lol
+* put snake here too
 
 ### nav:
 * add bottom margin of any page when nav is up
@@ -37,7 +38,7 @@ this is where all the cool stuff happens.
 ### about:
 * scrap this shit (make sure to archive the work!)
 * make it a fun stats thing like a pokemon lol
-* 
+
 ```
                \
                 \\
