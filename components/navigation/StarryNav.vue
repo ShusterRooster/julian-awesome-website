@@ -1,132 +1,90 @@
 <script setup lang="ts">
 import IconLink from "~/components/navigation/IconLink.vue";
 import {OnClickOutside, vOnClickOutside} from '@vueuse/components'
+import {gsap} from "gsap"
+
+import { CustomEase } from "gsap/CustomEase";
+import { CustomBounce } from "gsap/CustomBounce";
+
+gsap.registerPlugin(CustomEase, CustomBounce);
 
 const leaning = ref()
 const screaming = ref()
 const nav = ref()
 
 let navUp = false
-let launching = false
-
-const navStart = 'skew(0) translateY(82%)'
-
-const deadTime = 20
-const navTiming = {
-  duration: 800 + deadTime,
-  easing: 'ease-in',
-}
-
 onMounted(async () => {
   // Wait for the next DOM update cycle
   await nextTick()
 
   if (window.matchMedia("(pointer: coarse)").matches) {
-    // hide()
-  }
-
-  leaning.value.ontouchend = () => {
-    launch()
+    launchNav()
   }
 })
 
+const navLaunchDuration = 1.25
+const opacityChangeDuration = 0.15
+const jumpDelay = 0.25
+const jumpDuration = 1
+const screamDurationPercent = 0.9
+const jumpYPercent = -105
 
-function launch() {
+function launchNav() {
+  const opacityChange = (opacity: number) => {
+    return {duration: opacityChangeDuration, opacity: opacity}
+  }
+
   if(navUp) {
-    leaning.value.style.visibility = 'hidden'
-    screaming.value.style.visibility = 'visible'
-
-    setTimeout(() => {
-      leaning.value.style.visibility = 'visible'
-      screaming.value.style.visibility = 'hidden'
-    }, 200)
+    gsap.timeline()
+        .to(leaning.value, opacityChange(0))
+        .to(screaming.value, opacityChange(1), "<")
+        .to(screaming.value, opacityChange(0), "+=0.25")
+        .to(leaning.value, opacityChange(1), "<")
 
     return
   }
-  else if(launching) {
-    return;
-  }
 
-  const rumbleOffset = 0.2
+  CustomBounce.create("julianBounce", {
+    strength: 0.5,
+    endAtStart: true,
+    squash: 3,
+    squashID: "julianBounce-squash"
+  })
 
-  const navLaunch = [
-    {transform: navStart},
-    {transform: navStart + ' translate(1px, 1px) rotate(0deg)', offset: rumbleOffset},
-    {transform: navStart + ' translate(-1px, -2px) rotate(-1deg)', offset: rumbleOffset + 0.1},
-    {transform: navStart + ' translate(-3px, 0px) rotate(1deg)', offset: rumbleOffset + 0.2},
-    {transform: navStart + ' translate(-1px, -3px) rotate(1deg)', offset: rumbleOffset + 0.3},
-    {transform: 'skew(0) translateY(0)'},
-  ]
+  document.body.style.marginBottom = "12vh"
 
-  const initNavMove = {transform: navStart}
-  const initNavTiming = navTiming.duration / 3
+  gsap.timeline()
+      .to(nav.value, {yPercent: -92, duration: navLaunchDuration, ease: 'bounce.out'})
 
-  //for screaming
-  const julianLaunch = [
-    {visibility: 'visible'},
-    {transform: 'translate(2px, -30vh)'},
-    {transform: 'translate(2px, -120%)', easing: 'ease-in-out', offset: 0.6},
-  ]
+      //make leaning and scream launch same way
+      .to(leaning.value, {duration: jumpDuration, yPercent: jumpYPercent, delay: jumpDelay,  ease: "julianBounce"}, `<`) //offset by jumpDelay
+      .to(screaming.value, {duration: jumpDuration, yPercent: jumpYPercent,  ease: "julianBounce"}, "<")
 
-  const launchTiming = {
-    duration: 1000,
-    easing: 'linear',
-  };
+      //show screaming while leaning is going up and hide leaning
+      .to(screaming.value, {duration: opacityChangeDuration, opacity: 1}, `-=${jumpDuration * screamDurationPercent}`)
+      .to(leaning.value, {duration: opacityChangeDuration, opacity: 0}, "<")
 
-  nav.value.animate(initNavMove, initNavTiming)
-  launching = true
+      //once done, reset to normal
+      .to(screaming.value, {duration: opacityChangeDuration, opacity: 0, delay: jumpDelay})
+      .to(leaning.value, {duration: opacityChangeDuration, opacity: 1}, "<")
 
-  const jumpDelay = navTiming.duration * 0.95
-
-  //after nav does first move, wait till it ends to do the rest of the animation
-  setTimeout(() => {
-    nav.value.animate(navLaunch, navTiming)
-  }, initNavTiming)
-
-  //hide leaning
-  setTimeout(() => {
-    leaning.value.style.visibility = 'hidden'
-    screaming.value.animate(julianLaunch, launchTiming)
-
-  }, initNavTiming + jumpDelay)
-
-
-  //sets the final position, animations do not change the vals
-  setTimeout(() => {
-    nav.value.style.transform = 'skew(0) translateY(0)'
-    navUp = true
-
-    document.body.style.marginBottom = '12vh'
-  }, initNavTiming + navTiming.duration - deadTime)
-
-  //show leaning again
-  setTimeout(() => {
-    leaning.value.style.visibility = 'visible'
-    launching = false
-  }, initNavTiming + jumpDelay + launchTiming.duration - deadTime)
+  navUp = true
 }
 
-function retract() {
-  const navRetract = {duration: 400 + deadTime, easing: 'ease-in-out'}
+function retractNav() {
+  gsap.to(nav.value, {yPercent: 0, duration: navLaunchDuration, ease: 'bounce.out'})
+      .then(() => {
+        document.body.style.marginBottom = "0"
+      })
 
-  if (navUp) {
-    nav.value.animate({transform: navStart}, navRetract)
-
-    //sets stable settings when done retracting
-    setTimeout(() => {
-      nav.value.style.transform = navStart
-      navUp = false
-      document.body.style.marginBottom = '0'
-    }, navRetract.duration - deadTime)
-  }
+  navUp = false
 }
-
 
 </script>
 
 <template>
 
-  <OnClickOutside @trigger="retract">
+  <OnClickOutside @trigger="retractNav">
     <div id="nav" ref="nav">
       <div id="links">
         <IconLink name="home" to="/">
@@ -137,27 +95,23 @@ function retract() {
           <img src="~/assets/contact/flamingo.gif" alt="contact icon"/>
         </IconLink>
 
-        <IconLink name="archive" to="/archive">
-          <img src="~/assets/archive/christmasstar.gif" alt="archive icon"/>
+        <IconLink name="julianOS" to="/julianOS">
+          <img src="~/assets/julianOS/icon.gif" alt="julianOS icon"/>
         </IconLink>
 
-        <IconLink name="blogs" to="/blogs">
-          <img src="~/assets/blogs/purple.gif" alt="blogs icon"/>
-        </IconLink>
-
-<!--        <IconLink name="about" to="/about">-->
-<!--          <img src="~/assets/misc/3dbonehead.gif" alt="about icon"/>-->
+<!--        <IconLink name="blogs" to="/blogs">-->
+<!--          <img src="~/assets/blogs/purple.gif" alt="blogs icon"/>-->
 <!--        </IconLink>-->
 
-        <IconLink name="terminal" to="/terminal">
-          <img src="~/assets/misc/computer_surfing.gif" alt="terminal icon"/>
-        </IconLink>
+        <!--        <IconLink name="about" to="/about">-->
+        <!--          <img src="~/assets/misc/3dbonehead.gif" alt="about icon"/>-->
+        <!--        </IconLink>-->
       </div>
 
       <img class="starBorder" src="~/assets/stars/stargoldc-rotate.gif" alt="star border"/>
       <img id="star" src="~/assets/stars/bigstar.gif" alt="big star"/>
       <img id="screaming" ref="screaming" src="~/assets/julian/screaming-lowres.png" alt="julian screaming"/>
-      <img id="leaning" ref="leaning" src="~/assets/julian/leaning-lowres.png" alt="julian leaning"/>
+      <img id="leaning" ref="leaning" src="~/assets/julian/leaning-lowres.png" alt="julian leaning" @click="launchNav" />
     </div>
   </OnClickOutside>
 
@@ -239,15 +193,15 @@ function retract() {
     display: block;
     right: 0;
     top: 0;
-    transform: translate(2px, -120%);
+    transform: translate(-5%, -150%) scale(1.5);
   }
 
   #leaning {
-    visibility: visible;
+    opacity: 1;
   }
 
   #screaming {
-    visibility: hidden;
+    opacity: 0;
   }
 }
 
