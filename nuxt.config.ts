@@ -13,21 +13,18 @@ export default defineNuxtConfig({
     pages: true,
     css: ['~/assets/css/tailwind.css'],
 
-    // googleFonts: {
-    //     families: {
-    //         'Jersey 10': true,
-    //         'Micro 5': true,
-    //         'Pixelify Sans': true,
-    //         'Jacquard 12': true,
-    //         'Geostar Fill': true,
-    //         'Chokokutai': true,
-    //         'JetBrains Mono': true
-    //     }
-    // },
+    //fonts:
+    // 'Jersey 10': true,
+    // 'Micro 5': true,
+    // 'Pixelify Sans': true,
+    // 'Jacquard 12': true,
+    // 'Geostar Fill': true,
+    // 'Chokokutai': true,
+    // 'JetBrains Mono': true
 
-    // fonts: {
-    //     provider: 'bunny'
-    // },
+    fonts: {
+        provider: 'bunny'
+    },
 
     compatibilityDate: '2025-03-10'
 })
